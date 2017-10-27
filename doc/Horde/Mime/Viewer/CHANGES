@@ -1,0 +1,251 @@
+----------
+v2.2.3-git
+----------
+
+
+------
+v2.2.2
+------
+
+[jan] Fix bottom table line length of RAR archive summaries.
+
+
+------
+v2.2.1
+------
+
+[jan] SECURITY: Don't render SVG images in the browser to avoid XSS attacks
+      (Reported by Dawid Gounski via Beyond Security's SecuriTeam Secure
+      Disclosure program).
+
+
+------
+v2.2.0
+------
+
+[mjr] Add SyntaxHighlighter version 4 support.
+
+
+------
+v2.1.3
+------
+
+[jan] Update Greek translation (Limperis Antonis <limperis@cti.gr>).
+
+
+------
+v2.1.2
+------
+
+[jan] Add temp_dir configuration parameter to OpenOffice/LibreOffice viewer
+      (Request #11756).
+[jan] Mark PHP 7 as supported.
+
+
+------
+v2.1.1
+------
+
+[jan] Updated GL translation.
+
+
+------
+v2.1.0
+------
+
+[mms] Add optional support to determine if link text is a hostname when doing
+      phishing analysis for the HTML driver.
+
+
+------
+v2.0.8
+------
+
+[mms] More thorough handling of tar.gz data.
+
+
+------
+v2.0.7
+------
+
+[jan] Update Hungarian translation (Andras Galos <galosa@netinform.hu>).
+
+
+------
+v2.0.6
+------
+
+[mms] Fix fatal error if using TNEF viewer and bcmath extension is not
+      installed on the system.
+
+
+------
+v2.0.5
+------
+
+[jan] Update Ukrainian translation (Andriy Kopystyansky
+      <anri@polynet.lviv.ua>).
+
+
+------
+v2.0.4
+------
+
+[mms] Spreadsheet conversion now works without using temporary files.
+
+
+------
+v2.0.3
+------
+
+[jan] Update French translation (Paul De Vlieger
+      <paul.de_vlieger@moniut.univ-bpclermont.fr>).
+
+
+------
+v2.0.2
+------
+
+[jan] Add Basque translation (Ibon Igartua <ibon.igartua@ehu.es>).
+[jan] Update XSLT processor for OpenDocument files.
+
+
+------
+v2.0.1
+------
+
+[jan] Update Dutch translation (Arjen de Korte <build+horde@de-korte.org>).
+
+
+------
+v2.0.0
+------
+
+First stable release for Horde 5.
+
+
+---------
+v2.0.0RC1
+---------
+
+[mms] Fix reading Debian archive data.
+
+
+-----------
+v2.0.0beta1
+-----------
+
+First beta release for Horde 5.
+
+
+------------
+v2.0.0alpha1
+------------
+
+First alpha release for Horde 5.
+
+
+------
+v1.0.9
+------
+
+[mms] Fix reading Debian archive data.
+
+
+------
+v1.0.8
+------
+
+[jan] Add Croatian translation.
+[jan] Add Estonian translation.
+
+
+------
+v1.0.7
+------
+
+[mms] Fix iteration through child HTML nodes in the HTML viewer so that
+      extended viewers can do things like remove nodes outright.
+
+
+------
+v1.0.6
+------
+
+[jan] Fix configuration of syntaxhighlighter viewer.
+
+
+------
+v1.0.5
+------
+
+[jan] Update Latvian translation.
+
+
+------
+v1.0.4
+------
+
+[jan] Update Lithuanian translation.
+[jan] Update Brazilian Portuguese translation.
+[gwr] Support restricting the HTML tidy post processing by the message size
+      (Request #10266).
+
+
+------
+v1.0.3
+------
+
+[jan] Updated Slovak translation.
+
+
+------
+v1.0.2
+------
+
+[jan] Updated Spanish translation.
+
+
+------
+v1.0.1
+------
+
+[jan] Improve Syntaxhighlighter rendering in Chrome browsers.
+
+
+------
+v1.0.0
+------
+
+First stable release for Horde 4.
+
+
+---------
+v1.0.0RC2
+---------
+
+Second release candidate for Horde 4.
+[jan] Fix OpenOffice MIME viewer.
+
+
+---------
+v1.0.0RC1
+---------
+
+First release candidate for Horde 4.
+
+
+-----------
+v1.0.0beta1
+-----------
+
+First beta release for Horde 4.
+
+
+------------
+v1.0.0alpha1
+------------
+
+First alpha release for Horde 4.
+Replaced external or PHP-based syntax highlighters with javascript
+      SyntaxHighlighter: http://alexgorbatchev.com/SyntaxHighlighter/

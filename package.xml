@@ -10,7 +10,7 @@
   <email>slusarz@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-08-28</date>
+ <date>2017-10-30</date>
  <version>
   <release>2.2.3</release>
   <api>2.1.0</api>
@@ -29,6 +29,7 @@
     <dir name="Horde">
      <dir name="Mime">
       <dir name="Viewer">
+       <file name="CHANGES" role="doc" />
        <file name="COPYING" role="doc" />
       </dir> <!-- /doc/Horde/Mime/Viewer -->
      </dir> <!-- /doc/Horde/Mime -->
@@ -500,6 +501,7 @@
  </usesrole>
  <phprelease>
   <filelist>
+   <install as="CHANGES" name="doc/Horde/Mime/Viewer/CHANGES" />
    <install as="COPYING" name="doc/Horde/Mime/Viewer/COPYING" />
    <install as="js/syntaxhighlighter/LGPL-LICENSE" name="js/syntaxhighlighter/LGPL-LICENSE" />
    <install as="js/syntaxhighlighter/MIT-LICENSE" name="js/syntaxhighlighter/MIT-LICENSE" />
@@ -1128,7 +1130,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-08-28</date>
+   <date>2017-10-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 

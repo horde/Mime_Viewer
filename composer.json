@@ -38,9 +38,6 @@
     "autoload": {
         "psr-0": {
             "Horde_Mime_Viewer": "lib/"
-        },
-        "psr-4": {
-            "Horde\\Mime\\Viewer\\": "src/"
         }
     }
 }

@@ -6,13 +6,18 @@
     "license": "LGPL-2.1",
     "authors": [
         {
+            "name": "Jan Schneider",
+            "email": "jan@horde.org",
+            "role": "lead"
+        },
+        {
             "name": "Michael Slusarz",
             "email": "slusarz@horde.org",
             "role": "lead"
         }
     ],
     "version": "2.2.3",
-    "time": "2017-11-14",
+    "time": "2022-03-01",
     "repositories": [
         {
             "type": "pear",
@@ -32,7 +37,10 @@
         "ext-xml": "*"
     },
     "suggest": {
-        "pear-pear.php.net/Net_DNS2": "*"
+        "pear-pear.php.net/Net_DNS2": "*",
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "ext-xsl": "*"
     },
     "replace": {
         "pear-pear.horde.org/Horde_Mime_Viewer": "2.*",

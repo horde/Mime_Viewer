@@ -3,14 +3,20 @@
  <name>Horde_Mime_Viewer</name>
  <channel>pear.horde.org</channel>
  <summary>MIME viewer library</summary>
- <description>Provides rendering drivers for MIME data.</description>
+ <description>A library that provides rendering drivers for MIME data.</description>
+ <lead>
+  <name>Jan Schneider</name>
+  <user>yunosh</user>
+  <email>jan@horde.org</email>
+  <active>yes</active>
+ </lead>
  <lead>
   <name>Michael Slusarz</name>
   <user>slusarz</user>
   <email>slusarz@horde.org</email>
   <active>no</active>
  </lead>
- <date>2017-11-14</date>
+ <date>2022-03-01</date>
  <version>
   <release>2.2.3</release>
   <api>2.1.0</api>
@@ -410,7 +416,10 @@
     <dir name="Horde">
      <dir name="Mime">
       <dir name="Viewer">
-       <file name="url.phpt" role="test" />
+       <file name="AllTests.php" role="test" />
+       <file name="bootstrap.php" role="test" />
+       <file name="OooTest.php" role="test" />
+       <file name="xss.odt" role="test" />
       </dir> <!-- /test/Horde/Mime/Viewer -->
      </dir> <!-- /test/Horde/Mime -->
     </dir> <!-- /test/Horde -->
@@ -492,6 +501,15 @@
     <name>Net_DNS2</name>
     <channel>pear.php.net</channel>
    </package>
+   <extension>
+    <name>dom</name>
+   </extension>
+   <extension>
+    <name>libxml</name>
+   </extension>
+   <extension>
+    <name>xsl</name>
+   </extension>
   </optional>
  </dependencies>
  <usesrole>
@@ -674,7 +692,10 @@
    <install as="locale/uk/LC_MESSAGES/Horde_Mime_Viewer.po" name="locale/uk/LC_MESSAGES/Horde_Mime_Viewer.po" />
    <install as="locale/zh_CN/LC_MESSAGES/Horde_Mime_Viewer.po" name="locale/zh_CN/LC_MESSAGES/Horde_Mime_Viewer.po" />
    <install as="locale/zh_TW/LC_MESSAGES/Horde_Mime_Viewer.po" name="locale/zh_TW/LC_MESSAGES/Horde_Mime_Viewer.po" />
-   <install as="Horde/Mime/Viewer/url.phpt" name="test/Horde/Mime/Viewer/url.phpt" />
+   <install as="Horde/Mime/Viewer/AllTests.php" name="test/Horde/Mime/Viewer/AllTests.php" />
+   <install as="Horde/Mime/Viewer/bootstrap.php" name="test/Horde/Mime/Viewer/bootstrap.php" />
+   <install as="Horde/Mime/Viewer/OooTest.php" name="test/Horde/Mime/Viewer/OooTest.php" />
+   <install as="Horde/Mime/Viewer/xss.odt" name="test/Horde/Mime/Viewer/xss.odt" />
   </filelist>
  </phprelease>
  <changelog>
@@ -1130,7 +1151,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-11-14</date>
+   <date>2022-03-01</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 

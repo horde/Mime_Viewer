@@ -123,7 +123,9 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
         $xml = new DOMDocument();
         $xml->load(realpath($tmpdir . 'content.xml'));
         $result = $xslt->transformToXml($xml);
-        if (!$result) {
+        if ($result) {
+            $result = Horde_Text_Filter::filter($result, 'xss');
+        } else {
             $result = libxml_get_last_error()->message;
         }
 

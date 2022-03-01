@@ -8,6 +8,12 @@ type: library
 homepage: https://www.horde.org/libraries/Horde_Mime_Viewer
 authors:
   -
+    name: Jan Schneider
+    user: yunosh
+    email: jan@horde.org
+    active: true
+    role: lead
+  -
     name: Michael Slusarz
     user: slusarz
     email: slusarz@horde.org
@@ -39,3 +45,7 @@ dependencies:
   optional:
     pear:
       pear.php.net/Net_DNS2: '*'
+    ext:
+      dom: '*'
+      libxml: '*'
+      xsl: '*'

@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "horde/horde-installer-plugin": "dev-FRAMEWORK_6_0 || *",
+        "horde/horde-installer-plugin": "dev-FRAMEWORK_6_0 || ^2",
         "php": "^7.4 || ^8",
         "horde/browser": "^3 || dev-FRAMEWORK_6_0",
         "horde/compress": "^3 || dev-FRAMEWORK_6_0",
@@ -49,6 +49,5 @@
         "psr-4": {
             "Horde\\Mime\\Viewer\\Test\\": "test/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

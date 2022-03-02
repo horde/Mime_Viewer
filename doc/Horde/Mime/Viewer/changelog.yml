@@ -4,13 +4,12 @@
   state:
     release: stable
     api: stable
-  date: 2022-03-01
+  date: 2022-03-02
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Fix XSS vulnerability in Open Document mime viewer with different code path (Reported by: Mahdi Pasche <pasche@b1-systems.de>).
-    |+
 2.2.3:
   api: 2.1.0
   state:

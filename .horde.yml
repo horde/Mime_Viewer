@@ -39,3 +39,10 @@ dependencies:
   optional:
     composer:
       pear/net_dns2: '*'
+    ext:
+      dom: '*'
+      libxml: '*'
+      xsl: '*'
+  dev:
+    composer:
+      horde/test: ^3

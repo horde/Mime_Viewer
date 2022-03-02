@@ -92,7 +92,6 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
                         'info' => $list,
                         'key' => $key
                     ));
-
                 if ($has_xsl) {
                     file_put_contents($tmpdir . $file['name'], $content);
                 } elseif ($file['name'] == 'content.xml') {

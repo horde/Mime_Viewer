@@ -98,7 +98,10 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
                 } elseif ($file['name'] == 'content.xml') {
                     return array(
                         $this->_mimepart->getMimeId() => array(
-                            'data' => str_replace(array_keys($tags), array_values($tags), $content),
+                            'data' => Horde_Text_Filter::filter(
+                                str_replace(array_keys($tags), array_values($tags), $content),
+                                'xss'
+                            ),
                             'status' => array(),
                             'type' => 'text/html; charset=UTF-8'
                         )

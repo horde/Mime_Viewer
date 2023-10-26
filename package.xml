@@ -5,25 +5,19 @@
  <summary>MIME viewer library</summary>
  <description>A library that provides rendering drivers for MIME data.</description>
  <lead>
-  <name>Jan Schneider</name>
-  <user>yunosh</user>
-  <email>jan@horde.org</email>
-  <active>yes</active>
- </lead>
- <lead>
   <name>Michael Slusarz</name>
   <user>slusarz</user>
   <email>slusarz@horde.org</email>
-  <active>yes</active>
+  <active>no</active>
  </lead>
- <date>2022-03-02</date>
+ <date>2021-02-24</date>
  <version>
-  <release>2.2.5</release>
-  <api>2.1.0</api>
+  <release>3.0.0alpha1</release>
+  <api>3.0.0alpha1</api>
  </version>
  <stability>
-  <release>stable</release>
-  <api>stable</api>
+  <release>alpha</release>
+  <api>alpha</api>
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
  <notes>
@@ -415,10 +409,7 @@
     <dir name="Horde">
      <dir name="Mime">
       <dir name="Viewer">
-       <file name="AllTests.php" role="test" />
-       <file name="bootstrap.php" role="test" />
-       <file name="OooTest.php" role="test" />
-       <file name="xss.odt" role="test" />
+       <file name="url.phpt" role="test" />
       </dir> <!-- /test/Horde/Mime/Viewer -->
      </dir> <!-- /test/Horde/Mime -->
     </dir> <!-- /test/Horde -->
@@ -501,15 +492,6 @@
     <name>Net_DNS2</name>
     <channel>pear.php.net</channel>
    </package>
-   <extension>
-    <name>dom</name>
-   </extension>
-   <extension>
-    <name>libxml</name>
-   </extension>
-   <extension>
-    <name>xsl</name>
-   </extension>
   </optional>
  </dependencies>
  <usesrole>
@@ -692,48 +674,10 @@
    <install as="locale/uk/LC_MESSAGES/Horde_Mime_Viewer.po" name="locale/uk/LC_MESSAGES/Horde_Mime_Viewer.po" />
    <install as="locale/zh_CN/LC_MESSAGES/Horde_Mime_Viewer.po" name="locale/zh_CN/LC_MESSAGES/Horde_Mime_Viewer.po" />
    <install as="locale/zh_TW/LC_MESSAGES/Horde_Mime_Viewer.po" name="locale/zh_TW/LC_MESSAGES/Horde_Mime_Viewer.po" />
-   <install as="Horde/Mime/Viewer/AllTests.php" name="test/Horde/Mime/Viewer/AllTests.php" />
-   <install as="Horde/Mime/Viewer/bootstrap.php" name="test/Horde/Mime/Viewer/bootstrap.php" />
-   <install as="Horde/Mime/Viewer/OooTest.php" name="test/Horde/Mime/Viewer/OooTest.php" />
-   <install as="Horde/Mime/Viewer/xss.odt" name="test/Horde/Mime/Viewer/xss.odt" />
+   <install as="Horde/Mime/Viewer/url.phpt" name="test/Horde/Mime/Viewer/url.phpt" />
   </filelist>
  </phprelease>
  <changelog>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
   <release>
    <version>
     <release>1.0.0alpha1</release>
@@ -814,12 +758,10 @@
   <release>
    <version>
     <release>1.0.1</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-05-03</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -829,12 +771,10 @@
   <release>
    <version>
     <release>1.0.2</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-05-18</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -844,12 +784,10 @@
   <release>
    <version>
     <release>1.0.3</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-06-01</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -859,12 +797,10 @@
   <release>
    <version>
     <release>1.0.4</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-07-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -876,12 +812,10 @@
   <release>
    <version>
     <release>1.0.5</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-07-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -891,12 +825,10 @@
   <release>
    <version>
     <release>1.0.6</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-10-11</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -906,12 +838,10 @@
   <release>
    <version>
     <release>1.0.7</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-11-02</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -921,12 +851,10 @@
   <release>
    <version>
     <release>1.0.8</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2011-11-22</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -937,13 +865,10 @@
   <release>
    <version>
     <release>1.0.9</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date/>
+    <api>stable</api></stability>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * [mms] Fix reading Debian archive data.
@@ -952,12 +877,10 @@
   <release>
    <version>
     <release>2.0.0alpha1</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>alpha</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2012-07-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -967,12 +890,10 @@
   <release>
    <version>
     <release>2.0.0beta1</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>beta</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2012-07-19</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -982,12 +903,10 @@
   <release>
    <version>
     <release>2.0.0RC1</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>beta</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2012-10-26</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -997,12 +916,10 @@
   <release>
    <version>
     <release>2.0.0</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2012-10-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1012,12 +929,10 @@
   <release>
    <version>
     <release>2.0.1</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2012-11-06</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1027,12 +942,10 @@
   <release>
    <version>
     <release>2.0.2</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2013-01-09</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1043,12 +956,10 @@
   <release>
    <version>
     <release>2.0.3</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2013-01-29</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1058,12 +969,10 @@
   <release>
    <version>
     <release>2.0.4</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2013-03-05</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1073,12 +982,10 @@
   <release>
    <version>
     <release>2.0.5</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2013-05-28</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1088,12 +995,10 @@
   <release>
    <version>
     <release>2.0.6</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2014-04-03</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1103,12 +1008,10 @@
   <release>
    <version>
     <release>2.0.7</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2014-05-21</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1118,12 +1021,10 @@
   <release>
    <version>
     <release>2.0.8</release>
-    <api>1.0.0</api>
-   </version>
+    <api>1.0.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2014-11-18</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1133,12 +1034,10 @@
   <release>
    <version>
     <release>2.1.0</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2015-04-13</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1148,12 +1047,10 @@
   <release>
    <version>
     <release>2.1.1</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2015-07-31</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1163,12 +1060,10 @@
   <release>
    <version>
     <release>2.1.2</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2016-02-01</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1179,12 +1074,10 @@
   <release>
    <version>
     <release>2.1.3</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2016-03-21</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1194,12 +1087,10 @@
   <release>
    <version>
     <release>2.2.0</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2016-07-28</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1209,12 +1100,10 @@
   <release>
    <version>
     <release>2.2.1</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2016-09-06</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1224,12 +1113,10 @@
   <release>
    <version>
     <release>2.2.2</release>
-    <api>2.1.0</api>
-   </version>
+    <api>2.1.0</api></version>
    <stability>
     <release>stable</release>
-    <api>stable</api>
-   </stability>
+    <api>stable</api></stability>
    <date>2017-08-28</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
@@ -1238,44 +1125,12 @@
   </release>
   <release>
    <version>
-    <release>2.2.3</release>
-    <api>2.1.0</api>
-   </version>
+    <release>3.0.0alpha1</release>
+    <api>3.0.0alpha1</api></version>
    <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2022-03-01</date>
-   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
-   <notes>
-* [jan] Fix XSS vulnerability in Open Document mime viewer (Reported by: Simon Scannell, SonarSource &lt;simon.scannell@sonarsource.com&gt;).
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>2.2.4</release>
-    <api>2.1.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2022-03-02</date>
-   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
-   <notes>
-* [jan] Fix XSS vulnerability in Open Document mime viewer with different code path (Reported by: Mahdi Pasche &lt;pasche@b1-systems.de&gt;).
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>2.2.5</release>
-    <api>2.1.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2022-03-02</date>
+    <release>alpha</release>
+    <api>alpha</api></stability>
+   <date>2021-02-24</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 

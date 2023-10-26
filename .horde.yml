@@ -8,23 +8,17 @@ type: library
 homepage: https://www.horde.org/libraries/Horde_Mime_Viewer
 authors:
   -
-    name: Jan Schneider
-    user: yunosh
-    email: jan@horde.org
-    active: true
-    role: lead
-  -
     name: Michael Slusarz
     user: slusarz
     email: slusarz@horde.org
     active: false
     role: lead
 version:
-  release: 2.2.5
-  api: 2.1.0
+  release: 3.0.0alpha1
+  api: 3.0.0alpha1
 state:
-  release: stable
-  api: stable
+  release: alpha
+  api: alpha
 license:
   identifier: LGPL-2.1
   uri: http://www.horde.org/licenses/lgpl21
@@ -45,7 +39,3 @@ dependencies:
   optional:
     pear:
       pear.php.net/Net_DNS2: '*'
-    ext:
-      dom: '*'
-      libxml: '*'
-      xsl: '*'

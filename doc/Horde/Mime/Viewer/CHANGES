@@ -1,24 +1,6 @@
-------
-v2.2.5
-------
-
-
-
-
-------
-v2.2.4
-------
-
-[jan] Fix XSS vulnerability in Open Document mime viewer with different code
-      path (Reported by: Mahdi Pasche <pasche@b1-systems.de>).
-
-
-------
-v2.2.3
-------
-
-[jan] Fix XSS vulnerability in Open Document mime viewer (Reported by: Simon
-      Scannell, SonarSource <simon.scannell@sonarsource.com>).
+------------
+v3.0.0alpha1
+------------
 
 
 ------

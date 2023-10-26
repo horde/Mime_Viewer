@@ -19,32 +19,26 @@
     "version": "2.2.5",
     "time": "2022-03-02",
     "repositories": [
-        {
-            "type": "pear",
-            "url": "https://pear.horde.org"
-        }
     ],
     "require": {
         "php": "^5.3 || ^7",
-        "pear-pear.horde.org/Horde_Browser": "^2",
-        "pear-pear.horde.org/Horde_Compress": "^2",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_Mime": "^2",
-        "pear-pear.horde.org/Horde_Text_Filter": "^2",
-        "pear-pear.horde.org/Horde_Text_Flowed": "^2",
-        "pear-pear.horde.org/Horde_Util": "^2",
-        "pear-pear.horde.org/Horde_Translation": "^2.2",
+        "horde/browser": "^2",
+        "horde/compress": "^2",
+        "horde/exception": "^2",
+        "horde/mime": "^2",
+        "horde/text_filter": "^2",
+        "horde/text_flowed": "^2",
+        "horde/util": "^2",
+        "horde/translation": "^2.2",
         "ext-xml": "*"
     },
     "suggest": {
-        "pear-pear.php.net/Net_DNS2": "*",
+        "pear/net_dns2": "*",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xsl": "*"
     },
     "replace": {
-        "pear-pear.horde.org/Horde_Mime_Viewer": "2.*",
-        "pear-horde/Horde_Mime_Viewer": "2.*"
     },
     "autoload": {
         "psr-0": {

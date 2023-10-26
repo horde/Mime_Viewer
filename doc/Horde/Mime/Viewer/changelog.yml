@@ -49,7 +49,41 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: ~
+  notes: |+
+2.2.5:
+  api: 2.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2022-03-02
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [rla] State of Horde master branch at the time of reconciliation
+2.2.4:
+  api: 2.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2022-03-02
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Fix XSS vulnerability in Open Document mime viewer with different code path (Reported by: Mahdi Pasche <pasche@b1-systems.de>).
+2.2.3:
+  api: 2.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2022-03-01
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [jan] Fix XSS vulnerability in Open Document mime viewer (Reported by: Simon Scannell, SonarSource <simon.scannell@sonarsource.com>).
+2.2.2:
 2.2.2:
   api: 2.1.0
   state:

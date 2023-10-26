@@ -27,6 +27,27 @@ v3.0.0alpha2
 v3.0.0alpha1
 ------------
 
+------
+v2.2.5
+------
+
+[rla] State of Horde master branch at the time of reconciliation
+
+
+------
+v2.2.4
+------
+
+[jan] Fix XSS vulnerability in Open Document mime viewer with different code
+      path (Reported by: Mahdi Pasche <pasche@b1-systems.de>).
+
+
+------
+v2.2.3
+------
+
+[jan] Fix XSS vulnerability in Open Document mime viewer (Reported by: Simon
+      Scannell, SonarSource <simon.scannell@sonarsource.com>).
 
 ------
 v2.2.2

@@ -1,5 +1,16 @@
 ---
-3.0.0alpha5:
+3.0.0-alpha6:
+  api: 3.0.0-alpha1
+  state:
+    release: alpha
+    api: alpha
+  date: 2025-06-04
+  license:
+    identifier: LGPL-2.1-only
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    style: Apply php-cs-fixer php8.3+ rules
+3.0.0-alpha5:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -8,9 +19,10 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-    
-3.0.0alpha4:
+  notes: |-
+    Original version string was 3.0.0alpha5
+    |+
+3.0.0-alpha4:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -19,8 +31,10 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha3:
+  notes: |-
+    Original version string was 3.0.0alpha4
+    |+
+3.0.0-alpha3:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -29,8 +43,10 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha2:
+  notes: |-
+    Original version string was 3.0.0alpha3
+    |+
+3.0.0-alpha2:
   api: 3.0.0alpha1
   state:
     release: alpha
@@ -39,8 +55,10 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
-3.0.0alpha1:
+  notes: |-
+    Original version string was 3.0.0alpha2
+    |+
+3.0.0-alpha1:
   api: 3.0.0alpha1
   state:
     release: stable
@@ -49,7 +67,9 @@
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
-  notes: |+
+  notes: |-
+    Original version string was 3.0.0alpha1
+    |+
 2.2.5:
   api: 2.1.0
   state:
@@ -83,7 +103,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Fix XSS vulnerability in Open Document mime viewer (Reported by: Simon Scannell, SonarSource <simon.scannell@sonarsource.com>).
-2.2.2:
 2.2.2:
   api: 2.1.0
   state:
@@ -251,6 +270,42 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Update Dutch translation (Arjen de Korte <build+horde@de-korte.org>).
+2.0.0-beta1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: stable
+  date: 2012-07-19
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0beta1
+    First beta release for Horde 5.
+2.0.0-alpha1:
+  api: 1.0.0
+  state:
+    release: alpha
+    api: stable
+  date: 2012-07-05
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0alpha1
+    First alpha release for Horde 5.
+2.0.0-RC1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: stable
+  date: 2012-10-26
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 2.0.0RC1
+    [mms] Fix reading Debian archive data.
 2.0.0:
   api: 1.0.0
   state:
@@ -262,39 +317,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     First stable release for Horde 5.
-2.0.0RC1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: stable
-  date: 2012-10-26
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    [mms] Fix reading Debian archive data.
-2.0.0beta1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: stable
-  date: 2012-07-19
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First beta release for Horde 5.
-2.0.0alpha1:
-  api: 1.0.0
-  state:
-    release: alpha
-    api: stable
-  date: 2012-07-05
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First alpha release for Horde 5.
 1.0.9:
   api: 1.0.0
   state:
@@ -397,6 +419,56 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Improve Syntaxhighlighter rendering in Chrome browsers.
+1.0.0-beta1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-16
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0beta1
+    First beta release for Horde 4.
+1.0.0-alpha1:
+  api: 1.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2011-03-08
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0alpha1
+    First alpha release for Horde 4.
+    Replaced external or PHP-based syntax highlighters with javascript SyntaxHighlighter: http://alexgorbatchev.com/SyntaxHighlighter/
+1.0.0-RC2:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0RC2
+    Second release candidate for Horde 4.
+    [jan] Fix OpenOffice MIME viewer.
+1.0.0-RC1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Original version string was 1.0.0RC1
+    First release candidate for Horde 4.
 1.0.0:
   api: 1.0.0
   state:
@@ -408,49 +480,3 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     First stable release for Horde 4.
-1.0.0RC2:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-29
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    Second release candidate for Horde 4.
-    [jan] Fix OpenOffice MIME viewer.
-1.0.0RC1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-22
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First release candidate for Horde 4.
-1.0.0beta1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-16
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First beta release for Horde 4.
-1.0.0alpha1:
-  api: 1.0.0
-  state:
-    release: alpha
-    api: alpha
-  date: 2011-03-08
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First alpha release for Horde 4.
-    Replaced external or PHP-based syntax highlighters with javascript SyntaxHighlighter: http://alexgorbatchev.com/SyntaxHighlighter/

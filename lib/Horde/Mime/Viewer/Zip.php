@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Zip class renders out the contents of ZIP files in
  * HTML format.
@@ -21,23 +22,23 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => true,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         'compressed' => true,
         'embedded' => false,
-        'forceinline' => false
-    );
+        'forceinline' => false,
+    ];
 
     /**
      * A callback function to use in _toHTML().
@@ -60,7 +61,7 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
     }
@@ -79,9 +80,9 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
         if (!$this->getConfigParam('zip')) {
             $this->setConfigParam('zip', Horde_Compress::factory('Zip'));
         }
-        $zipInfo = $this->getConfigParam('zip')->decompress($contents, array(
-            'action' => Horde_Compress_Zip::ZIP_LIST
-        ));
+        $zipInfo = $this->getConfigParam('zip')->decompress($contents, [
+            'action' => Horde_Compress_Zip::ZIP_LIST,
+        ]);
 
         $fileCount = count($zipInfo);
 
@@ -108,11 +109,11 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
                 Horde_String::pad(Horde_Mime_Viewer_Translation::t("Ratio"), 10, ' ', STR_PAD_LEFT) .
                 "\n",
                 'Space2html',
-                array(
+                [
                     'charset' => $charset,
                     'encode' => true,
-                    'encode_all' => true
-                )
+                    'encode_all' => true,
+                ]
             ) . str_repeat('-', 74) . "\n";
 
         foreach ($zipInfo as $key => $val) {
@@ -128,11 +129,11 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
             $val['ratio'] = Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT);
 
             foreach ($val as &$v) {
-                $v = $this->_textFilter($v, 'Space2html', array(
+                $v = $this->_textFilter($v, 'Space2html', [
                     'charset' => $charset,
                     'encode' => true,
-                    'encode_all' => true
-                ));
+                    'encode_all' => true,
+                ]);
             }
 
             if (!is_null($this->_callback)) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Enriched class renders out plain text from enriched
  * content tags, ala RFC 1896.
@@ -32,12 +33,12 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => true,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.
@@ -76,7 +77,7 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
     {
         $text = trim($this->_mimepart->getContents());
         if (!strlen($text)) {
-            return array();
+            return [];
         }
 
         // We add space at the beginning and end of the string as it will
@@ -104,7 +105,7 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
         $text = str_replace(chr(1), '<<', $text);
         // $text = str_replace(chr(255), '<', $text);
 
-        $replace = array(
+        $replace = [
             // Get color parameters into a more useable format.
             '/<color><param>([\da-fA-F]+),([\da-fA-F]+),([\da-fA-F]+)<\/param>/Uis' => '<color r=\1 g=\2 b=\3>',
             '/<color><param>(red|blue|green|yellow|cyan|magenta|black|white)<\/param>/Uis' => '<color n=\1>',
@@ -124,8 +125,8 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
              * it some day we should rewrite this to handle <nofill>
              * correctly. */
             '/([^\n])\r\n([^\r])/' => '\1 \2',
-            '/(\r\n)\r\n/' => '\1'
-        );
+            '/(\r\n)\r\n/' => '\1',
+        ];
         $text = preg_replace(array_keys($replace), array_values($replace), $text);
 
         // We try to protect against bad stuff here.
@@ -133,16 +134,16 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
 
         // Now convert the known tags to html. Try to remove any tag
         // parameters to stop people from trying to pull a fast one
-        $replace = array(
+        $replace = [
             '/(?<!&lt;)&lt;bold.*&gt;(.*)&lt;\/bold&gt;/Uis' => '<span style="font-weight: bold">\1</span>',
             '/(?<!&lt;)&lt;italic.*&gt;(.*)&lt;\/italic&gt;/Uis' => '<span style="font-style: italic">\1</span>',
-            '/(?<!&lt;)&lt;underline.*&gt;(.*)&lt;\/underline&gt;/Uis' => '<span style="text-decoration: underline">\1</span>'
-        );
+            '/(?<!&lt;)&lt;underline.*&gt;(.*)&lt;\/underline&gt;/Uis' => '<span style="text-decoration: underline">\1</span>',
+        ];
         $text = preg_replace(array_keys($replace), array_values($replace), $text);
 
-        $text = preg_replace_callback('/(?<!&lt;)&lt;color r=([\da-fA-F]+) g=([\da-fA-F]+) b=([\da-fA-F]+)&gt;(.*)&lt;\/color&gt;/Uis', array($this, 'colorize'), $text);
+        $text = preg_replace_callback('/(?<!&lt;)&lt;color r=([\da-fA-F]+) g=([\da-fA-F]+) b=([\da-fA-F]+)&gt;(.*)&lt;\/color&gt;/Uis', [$this, 'colorize'], $text);
 
-        $replace = array(
+        $replace = [
             '/(?<!&lt;)&lt;color n=(red|blue|green|yellow|cyan|magenta|black|white)&gt;(.*)&lt;\/color&gt;/Uis' => '<span style="color: \1">\2</span>',
             '/(?<!&lt;)&lt;fontfamily&gt;(.*)&lt;\/fontfamily&gt;/Uis' => '\1',
             '/(?<!&lt;)&lt;fontfamily f=(\w+)&gt;(.*)&lt;\/fontfamily&gt;/Uis' => '<span style="font-family: \1">\2</span>',
@@ -156,8 +157,8 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
             '/(?<!&lt;)&lt;flushright.*&gt;(.*)&lt;\/flushright&gt;/Uis' => '<div align="right">\1</div>',
             '/(?<!&lt;)&lt;flushboth.*&gt;(.*)&lt;\/flushboth&gt;/Uis' => '<div align="justify">\1</div>',
             '/(?<!&lt;)&lt;paraindent.*&gt;(.*)&lt;\/paraindent&gt;/Uis' => '<blockquote>\1</blockquote>',
-            '/(?<!&lt;)&lt;excerpt.*&gt;(.*)&lt;\/excerpt&gt;/Uis' => '<blockquote>\1</blockquote>'
-        );
+            '/(?<!&lt;)&lt;excerpt.*&gt;(.*)&lt;\/excerpt&gt;/Uis' => '<blockquote>\1</blockquote>',
+        ];
         $text = preg_replace(array_keys($replace), array_values($replace), $text);
 
         // Replace << with < now (from translated HTML form).
@@ -172,7 +173,7 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
 
         /* Wordwrap -- note this could impact on our above RFC compliance *IF*
          * we honored nofill tags (which we don't yet). */
-        $text = str_replace(array("\t", '  ', "\n "), array('        ', ' &nbsp;', "\n&nbsp;"), $text);
+        $text = str_replace(["\t", '  ', "\n "], ['        ', ' &nbsp;', "\n&nbsp;"], $text);
 
         if ($text[0] == ' ') {
             $text = '&nbsp;' . substr($text, 1);

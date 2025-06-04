@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Report class is a wrapper used to load the
  * appropriate Horde_Mime_Viewer for multipart/report data (RFC 3462).
@@ -29,7 +30,7 @@ class Horde_Mime_Viewer_Report extends Horde_Mime_Viewer_Base
      *                     the MIME type to use.
      * </pre>
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Deb class renders out lists of files in Debian
  * packages by using the dpkg tool to query the package.
@@ -20,23 +21,23 @@ class Horde_Mime_Viewer_Deb extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => true,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         'compressed' => true,
         'embedded' => false,
-        'forceinline' => false
-    );
+        'forceinline' => false,
+    ];
 
     /**
      * Constructor.
@@ -52,11 +53,11 @@ class Horde_Mime_Viewer_Deb extends Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
-        $this->_required = array_merge($this->_required, array(
-            'location'
-        ));
+        $this->_required = array_merge($this->_required, [
+            'location',
+        ]);
 
         parent::__construct($part, $conf);
     }
@@ -71,7 +72,7 @@ class Horde_Mime_Viewer_Deb extends Horde_Mime_Viewer_Base
         /* Check to make sure the viewer program exists. */
         if (!($location = $this->getConfigParam('location')) ||
             !file_exists($location)) {
-            return array();
+            return [];
         }
 
         $data = '';

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Security class is a wrapper used to load the
  * appropriate Horde_Mime_Viewer for secure multipart messages (defined by RFC
@@ -30,7 +31,7 @@ class Horde_Mime_Viewer_Security extends Horde_Mime_Viewer_Base
      *                     the MIME type to use.
      * </pre>
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
     }

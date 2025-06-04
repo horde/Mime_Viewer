@@ -13,11 +13,13 @@
 namespace Horde\Mime\Viewer\Test;
 
 use Horde\Test\TestCase;
-
 use Horde_Mime_Part;
 use Horde_Mime_Viewer_Ooo;
 use Horde_Compress_Zip;
 
+/**
+ * @coversNothing
+ */
 class OooTest extends TestCase
 {
     protected function assertStringDoesNotContainsString(string $haystack, string $needle)

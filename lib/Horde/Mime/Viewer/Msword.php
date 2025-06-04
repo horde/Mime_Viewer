@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Msword class renders out Microsoft Word documents
  * in HTML format by using the AbiWord package.
@@ -21,12 +22,12 @@ class Horde_Mime_Viewer_Msword extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Constructor.
@@ -34,11 +35,11 @@ class Horde_Mime_Viewer_Msword extends Horde_Mime_Viewer_Base
      * @param array $conf  Configuration for this driver:
      *   - location: (string) Location of the abiword binary.
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
-        $this->_required = array_merge($this->_required, array(
-            'location'
-        ));
+        $this->_required = array_merge($this->_required, [
+            'location',
+        ]);
 
         parent::__construct($part, $conf);
     }
@@ -66,7 +67,7 @@ class Horde_Mime_Viewer_Msword extends Horde_Mime_Viewer_Base
         /* Check to make sure the viewer program exists. */
         if (!($location = $this->getConfigParam('location')) ||
             !file_exists($location)) {
-            return array();
+            return [];
         }
 
         $tmp_in = $this->_getTempFile();

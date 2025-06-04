@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Smil renders SMIL documents to very basic HTML.
  *
@@ -33,12 +34,12 @@ class Horde_Mime_Viewer_Smil extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => true,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.
@@ -83,11 +84,11 @@ class Horde_Mime_Viewer_Smil extends Horde_Mime_Viewer_Base
     protected function _startElement($parser, $name, $attrs)
     {
         switch ($name) {
-        case 'IMG':
-            if (isset($attrs['SRC'])) {
-                $this->_content .= '<img src="' . htmlspecialchars($attrs['SRC']) . '" />';
-            }
-            break;
+            case 'IMG':
+                if (isset($attrs['SRC'])) {
+                    $this->_content .= '<img src="' . htmlspecialchars($attrs['SRC']) . '" />';
+                }
+                break;
         }
     }
 
@@ -97,9 +98,7 @@ class Horde_Mime_Viewer_Smil extends Horde_Mime_Viewer_Base
      * @param object $parser  Handle to the parser instance.
      * @param string $name    The name of this XML element.
      */
-    protected function _endElement($parser, $name)
-    {
-    }
+    protected function _endElement($parser, $name) {}
 
     /**
      * User-defined function callback for character data.

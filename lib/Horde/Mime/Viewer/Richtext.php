@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Richtext class renders out HTML text from
  * text/richtext content tags, (RFC 1896 [7.1.3]).
@@ -41,12 +42,12 @@ class Horde_Mime_Viewer_Richtext extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => true,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.
@@ -58,7 +59,6 @@ class Horde_Mime_Viewer_Richtext extends Horde_Mime_Viewer_Base
         return $this->_renderFullReturn($this->_renderReturn(
             $this->_toHTML(),
             'text/html; charset=' . $this->_mimepart->getCharset()
-
         ));
     }
 
@@ -84,7 +84,7 @@ class Horde_Mime_Viewer_Richtext extends Horde_Mime_Viewer_Base
     {
         $text = trim($this->_mimepart->getContents());
         if ($text == '') {
-            return array();
+            return [];
         }
 
         /* We add space at the beginning and end of the string as it will
@@ -102,18 +102,18 @@ class Horde_Mime_Viewer_Richtext extends Horde_Mime_Viewer_Base
         $text = strip_tags($text, $tags);
 
         /* <lt> becomes a '<'. CRLF becomes a SPACE. */
-        $text = str_ireplace(array('<lt>', "\r\n"), array('&lt;', ' '), $text);
+        $text = str_ireplace(['<lt>', "\r\n"], ['&lt;', ' '], $text);
 
         /* We try to protect against bad stuff here. */
         $text = @htmlspecialchars($text, ENT_QUOTES, $this->_mimepart->getCharset());
 
         /* <nl> becomes a newline (<br />);
          * <np> becomes a paragraph break (<p />). */
-        $text = str_ireplace(array('&lt;nl&gt;', '&lt;np&gt;'), array('<br />', '<p />'), $text);
+        $text = str_ireplace(['&lt;nl&gt;', '&lt;np&gt;'], ['<br />', '<p />'], $text);
 
         /* Now convert the known tags to html. Try to remove any tag
          * parameters to stop people from trying to pull a fast one. */
-        $replace = array(
+        $replace = [
             '/(?<!&lt;)&lt;bold.*&gt;(.*)&lt;\/bold&gt;/Uis' => '<span style="font-weight: bold">\1</span>',
             '/(?<!&lt;)&lt;italic.*&gt;(.*)&lt;\/italic&gt;/Uis' => '<span style="font-style: italic">\1</span>',
             '/(?<!&lt;)&lt;fixed.*&gt;(.*)&lt;\/fixed&gt;/Uis' => '<font face="fixed">\1</font>',
@@ -130,15 +130,15 @@ class Horde_Mime_Viewer_Richtext extends Horde_Mime_Viewer_Base
             '/(?<!&lt;)&lt;heading.*&gt;(.*)&lt;\/heading&gt;/Uis' => '<br /><div align="center" style="font-weight: bold">\1</div><br />',
             '/(?<!&lt;)&lt;footing.*&gt;(.*)&lt;\/footing&gt;/Uis' => '<br /><div align="center" style="font-weight: bold">\1</div><br />',
             '/(?<!&lt;)&lt;paragraph.*&gt;(.*)&lt;\/paragraph&gt;/Uis' => '<p>\1</p>',
-            '/(?<!&lt;)&lt;signature.*&gt;(.*)&lt;\/signature&gt;/Uis' => '<address>\1</address>'
-        );
+            '/(?<!&lt;)&lt;signature.*&gt;(.*)&lt;\/signature&gt;/Uis' => '<address>\1</address>',
+        ];
         $text = preg_replace(array_keys($replace), array_values($replace), $text);
 
         /* Now we remove the leading/trailing space we added at the start. */
         $text = substr($text, 1, -1);
 
         /* Wordwrap. */
-        $text = str_replace(array("\t", '  ', "\n "), array('        ', ' &nbsp;', "\n&nbsp;"), $text);
+        $text = str_replace(["\t", '  ', "\n "], ['        ', ' &nbsp;', "\n&nbsp;"], $text);
         if ($text[0] == ' ') {
             $text = '&nbsp;' . substr($text, 1);
         }

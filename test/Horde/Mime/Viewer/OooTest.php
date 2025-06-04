@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Horde LLC (http://www.horde.org/)
  *
@@ -19,17 +20,17 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package    Mime
  * @subpackage UnitTests
+ * @coversNothing
  */
 class Horde_Mime_MimeTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testXssVulnerability()
     {
         $mimePart = new Horde_Mime_Part();
         $mimePart->setContents(file_get_contents(__DIR__ . '/xss.odt'));
         $viewer = new Horde_Mime_Viewer_Ooo(
             $mimePart,
-            array('zip' => new Horde_Compress_Zip())
+            ['zip' => new Horde_Compress_Zip()]
         );
         $html = current(@$viewer->render('full'));
 

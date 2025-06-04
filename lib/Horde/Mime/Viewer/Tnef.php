@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Tnef class allows MS-TNEF attachments to be
  * displayed.
@@ -21,23 +22,23 @@ class Horde_Mime_Viewer_Tnef extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         'compressed' => true,
         'embedded' => true,
-        'forceinline' => true
-    );
+        'forceinline' => true,
+    ];
 
     /**
      * Constructor.
@@ -51,7 +52,7 @@ class Horde_Mime_Viewer_Tnef extends Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
     }
@@ -73,7 +74,7 @@ class Horde_Mime_Viewer_Tnef extends Horde_Mime_Viewer_Base
             }
             $tnefData = $tnef->decompress($this->_mimepart->getContents());
         } catch (Horde_Compress_Exception $e) {
-            $tnefData = array();
+            $tnefData = [];
         }
 
         if (!count($tnefData)) {
@@ -92,7 +93,7 @@ class Horde_Mime_Viewer_Tnef extends Horde_Mime_Viewer_Base
 
             /* Short-circuit MIME-type guessing for winmail.dat parts;
              * we're showing enough entries for them already. */
-            if (in_array($temp_part->getType(), array('application/octet-stream', 'application/base64'))) {
+            if (in_array($temp_part->getType(), ['application/octet-stream', 'application/base64'])) {
                 $temp_part->setType(
                     Horde_Mime_Magic::filenameToMIME($data['name'])
                 );

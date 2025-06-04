@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Images class allows images to be displayed.
  *
@@ -19,12 +20,12 @@ class Horde_Mime_Viewer_Images extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Constructor.
@@ -33,12 +34,12 @@ class Horde_Mime_Viewer_Images extends Horde_Mime_Viewer_Base
      *                                    rendered.
      * @param array $conf                 Configuration.
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
 
         /* TODO: Are there other image types that are compressed? */
-        $this->_metadata['compressed'] = in_array($this->_getType(), array('image/gif', 'image/jpeg', 'image/png'));
+        $this->_metadata['compressed'] = in_array($this->_getType(), ['image/gif', 'image/jpeg', 'image/png']);
     }
 
     /**
@@ -61,22 +62,22 @@ class Horde_Mime_Viewer_Images extends Horde_Mime_Viewer_Base
         $type = $this->_mimepart->getType();
 
         switch ($type) {
-        case 'image/jpg':
-            /* image/jpg == image/jpeg. */
-        case 'image/pjpeg':
-            /* image/jpeg and image/pjpeg *appear* to be the same entity, but
-             * Mozilla (for one) don't seem to want to accept the latter. */
-            return 'image/jpeg';
+            case 'image/jpg':
+                /* image/jpg == image/jpeg. */
+            case 'image/pjpeg':
+                /* image/jpeg and image/pjpeg *appear* to be the same entity, but
+                 * Mozilla (for one) don't seem to want to accept the latter. */
+                return 'image/jpeg';
 
-        case 'image/x-png':
-            /* image/x-png == image/png. */
-            return 'image/png';
+            case 'image/x-png':
+                /* image/x-png == image/png. */
+                return 'image/png';
 
-        case 'image/svg+xml':
-            return 'application/octet-stream';
+            case 'image/svg+xml':
+                return 'application/octet-stream';
 
-        default:
-            return $type;
+            default:
+                return $type;
         }
     }
 

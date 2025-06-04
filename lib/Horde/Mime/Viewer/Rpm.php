@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Rpm class renders out lists of files in RPM
  * packages by using the rpm tool to query the package.
@@ -20,43 +21,43 @@ class Horde_Mime_Viewer_Rpm extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => true,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         'compressed' => true,
         'embedded' => false,
-        'forceinline' => false
-    );
+        'forceinline' => false,
+    ];
 
-   /**
-     * Constructor.
-     *
-     * @param Horde_Mime_Part $mime_part  The object with the data to be
-     *                                    rendered.
-     * @param array $conf                 Configuration:
-     * <pre>
-     * 'location' - (string) The location of the rpm binary [REQUIRED].
-     * 'monospace' - (string) A class to use to display monospace text inline.
-     *               DEFAULT: Uses style="font-family:monospace"
-     * </pre>
-     *
-     * @throws InvalidArgumentException
-     */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    /**
+      * Constructor.
+      *
+      * @param Horde_Mime_Part $mime_part  The object with the data to be
+      *                                    rendered.
+      * @param array $conf                 Configuration:
+      * <pre>
+      * 'location' - (string) The location of the rpm binary [REQUIRED].
+      * 'monospace' - (string) A class to use to display monospace text inline.
+      *               DEFAULT: Uses style="font-family:monospace"
+      * </pre>
+      *
+      * @throws InvalidArgumentException
+      */
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
-        $this->_required = array_merge($this->_required, array(
-            'location'
-        ));
+        $this->_required = array_merge($this->_required, [
+            'location',
+        ]);
 
         parent::__construct($part, $conf);
     }
@@ -71,7 +72,7 @@ class Horde_Mime_Viewer_Rpm extends Horde_Mime_Viewer_Base
         /* Check to make sure the viewer program exists. */
         if (!($location = $this->getConfigParam('location')) ||
             !file_exists($location)) {
-            return array();
+            return [];
         }
 
         $data = '';

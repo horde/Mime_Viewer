@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Ooo class renders out OpenOffice.org documents in
  * HTML format.
@@ -21,25 +22,25 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         /* At this point assume that the document takes advantage of ZIP
          * compression. */
         'compressed' => true,
         'embedded' => false,
-        'forceinline' => false
-    );
+        'forceinline' => false,
+    ];
 
     /**
      * Constructor.
@@ -50,7 +51,7 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
      *   - 'zip': (Horde_Compress_Zip) A zip object.
      *   - 'temp_dir': (string) Where to create a temporary directory.
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
     }
@@ -68,60 +69,62 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
             $tmpdir = Horde_Util::createTempDir(true, $this->getConfigParam('temp_dir')) . '/';
         }
 
-        $fnames = array('content.xml', 'styles.xml', 'meta.xml');
-        $tags = array(
+        $fnames = ['content.xml', 'styles.xml', 'meta.xml'];
+        $tags = [
             'text:p' => 'p',
             'table:table' => 'table border="0" cellspacing="1" cellpadding="0" ',
             'table:table-row' => 'tr bgcolor="#cccccc"',
             'table:table-cell' => 'td',
-            'table:number-columns-spanned=' => 'colspan='
-        );
+            'table:number-columns-spanned=' => 'colspan=',
+        ];
 
         if (!$this->getConfigParam('zip')) {
             $this->setConfigParam('zip', Horde_Compress::factory('Zip'));
         }
         $list = $this->getConfigParam('zip')
-            ->decompress($this->_mimepart->getContents(),
-                         array('action' => Horde_Compress_Zip::ZIP_LIST));
+            ->decompress(
+                $this->_mimepart->getContents(),
+                ['action' => Horde_Compress_Zip::ZIP_LIST]
+            );
 
         foreach ($list as $key => $file) {
             if (in_array($file['name'], $fnames)) {
                 $content = $this->getConfigParam('zip')
-                    ->decompress($this->_mimepart->getContents(), array(
+                    ->decompress($this->_mimepart->getContents(), [
                         'action' => Horde_Compress_Zip::ZIP_DATA,
                         'info' => $list,
-                        'key' => $key
-                    ));
+                        'key' => $key,
+                    ]);
                 if ($has_xsl) {
                     file_put_contents($tmpdir . $file['name'], $content);
                 } elseif ($file['name'] == 'content.xml') {
-                    return array(
-                        $this->_mimepart->getMimeId() => array(
+                    return [
+                        $this->_mimepart->getMimeId() => [
                             'data' => Horde_Text_Filter::filter(
                                 str_replace(array_keys($tags), array_values($tags), $content),
                                 'xss'
                             ),
-                            'status' => array(),
-                            'type' => 'text/html; charset=UTF-8'
-                        )
-                    );
+                            'status' => [],
+                            'type' => 'text/html; charset=UTF-8',
+                        ],
+                    ];
                 }
             }
         }
 
         if (!$has_xsl) {
-            return array();
+            return [];
         }
 
         $xslt = new XSLTProcessor();
         $xsl = new DOMDocument();
         $xsl->load(realpath(__DIR__ . '/Ooo/export/xhtml/opendoc2xhtml.xsl'));
         $xslt->importStylesheet($xsl);
-        $xslt->setParameter('http://www.w3.org/1999/XSL/Transform', array(
+        $xslt->setParameter('http://www.w3.org/1999/XSL/Transform', [
             'metaFileURL' => 'file://' . $tmpdir . 'meta.xml',
             'stylesFileURL' => 'file://' . $tmpdir . 'styles.xml',
             'java' => false,
-        ));
+        ]);
         $xml = new DOMDocument();
         $xml->load(realpath($tmpdir . 'content.xml'));
         $result = $xslt->transformToXml($xml);
@@ -131,13 +134,13 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
             $result = libxml_get_last_error()->message;
         }
 
-        return array(
-            $this->_mimepart->getMimeId() => array(
+        return [
+            $this->_mimepart->getMimeId() => [
                 'data' => $result,
-                'status' => array(),
-                'type' => 'text/html; charset=UTF-8'
-            )
-        );
+                'status' => [],
+                'type' => 'text/html; charset=UTF-8',
+            ],
+        ];
     }
 
 }

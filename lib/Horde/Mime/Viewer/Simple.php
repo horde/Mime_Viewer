@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Simple class renders out plain text without any
  * modifications.
@@ -20,12 +21,12 @@ class Horde_Mime_Viewer_Simple extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.

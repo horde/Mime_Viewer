@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Tgz class renders out plain or gzipped tarballs in
  * HTML.
@@ -21,22 +22,22 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => true,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * The list of compressed subtypes.
      *
      * @var array
      */
-    protected $_gzipSubtypes = array(
+    protected $_gzipSubtypes = [
         'x-compressed-tar', 'tgz', 'x-tgz', 'gzip', 'x-gzip',
-        'x-gzip-compressed', 'x-gtar'
-    );
+        'x-gzip-compressed', 'x-gtar',
+    ];
 
     /**
      * Constructor.
@@ -51,7 +52,7 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
      * 'tar' - (Horde_Compress_Tar) A tar object.
      * </pre>
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
 
@@ -97,12 +98,13 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
                     $tarData = $tar->decompress(
                         $gzip->decompress($contents)
                     );
-                } catch (Horde_Compress_Exception $e) {}
+                } catch (Horde_Compress_Exception $e) {
+                }
             }
         }
 
         if (is_null($tarData)) {
-            return array();
+            return [];
         }
 
         $fileCount = count($tarData);
@@ -116,21 +118,21 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
 
         $text = '<table><tr><td align="left"><span ' .
             ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">') .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'Space2html', array(
+            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'Space2html', [
                 'charset' => $charset,
                 'encode' => true,
-                'encode_all' => true
-            )) . "\n" .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'Space2html', array(
+                'encode_all' => true,
+            ]) . "\n" .
+            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'Space2html', [
                 'charset' => $charset,
                 'encode' => true,
-                'encode_all' => true
-            )) . "\n" .
-            $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'Space2html', array(
+                'encode_all' => true,
+            ]) . "\n" .
+            $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'Space2html', [
                 'charset' => $charset,
                 'encode' => true,
-                'encode_all' => true
-            )) .
+                'encode_all' => true,
+            ]) .
             "\n\n" .
             $this->_textFilter(
                 str_pad(Horde_Mime_Viewer_Translation::t("File Name"), 62, ' ', STR_PAD_RIGHT) .
@@ -138,11 +140,11 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
                 str_pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT) .
                 str_pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT),
                 'Space2html',
-                array(
+                [
                     'charset' => $charset,
                     'encode' => true,
-                    'encode_all' => true
-                )
+                    'encode_all' => true,
+                ]
             ) . "\n" .
             str_repeat('-', 106) . "\n";
 
@@ -153,11 +155,11 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
                 str_pad($val['size'], 10, ' ', STR_PAD_LEFT) .
                 str_pad(strftime("%d-%b-%Y %H:%M", $val['date']), 19, ' ', STR_PAD_LEFT),
                 'Space2html',
-                array(
+                [
                     'charset' => $charset,
                     'encode' => true,
-                    'encode_all' => true
-                )
+                    'encode_all' => true,
+                ]
             ) . "\n";
         }
 

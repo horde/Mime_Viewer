@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
  *
@@ -30,12 +31,12 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => true,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * The CSS used to display the phishing warning.
@@ -56,7 +57,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_tmp = array();
+    protected $_tmp = [];
 
     /**
      * Constructor.
@@ -74,11 +75,11 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
-        $this->_required = array_merge($this->_required, array(
-            'browser'
-        ));
+        $this->_required = array_merge($this->_required, [
+            'browser',
+        ]);
 
         parent::__construct($part, $conf);
     }
@@ -90,7 +91,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      */
     protected function _render()
     {
-        $html = $this->_cleanHTML($this->_mimepart->getContents(), array('inline' => false));
+        $html = $this->_cleanHTML($this->_mimepart->getContents(), ['inline' => false]);
 
         return $this->_renderReturn(
             $html->returnHtml(),
@@ -105,7 +106,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      */
     protected function _renderInline()
     {
-        $html = $this->_cleanHTML($this->_mimepart->getContents(), array('inline' => true));
+        $html = $this->_cleanHTML($this->_mimepart->getContents(), ['inline' => true]);
 
         return $this->_renderReturn(
             Horde_String::convertCharset($html->returnHtml(), $this->_mimepart->getCharset(), 'UTF-8'),
@@ -134,40 +135,39 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *
      * @return Horde_Domhtml  The cleaned HTML data.
      */
-    protected function _cleanHTML($data, $options = array())
+    protected function _cleanHTML($data, $options = [])
     {
         $browser = $this->getConfigParam('browser');
         if (($tidy_limit = $this->getConfigParam('tidy_size_limit')) === null) {
             $tidy_limit = false;
         }
-        $charset = isset($options['charset'])
-            ? $options['charset']
-            : $this->_mimepart->getCharset();
+        $charset = $options['charset']
+            ?? $this->_mimepart->getCharset();
         $strip_style_attributes =
             (!empty($options['inline']) &&
              (($browser->isBrowser('mozilla') &&
               ($browser->getMajor() == 4)) ||
               $browser->isBrowser('msie')));
 
-        $data = $this->_textFilter($data, array('cleanhtml', 'xss'), array(
-            array(
+        $data = $this->_textFilter($data, ['cleanhtml', 'xss'], [
+            [
                 'charset' => $charset,
-                'size' => $tidy_limit
-            ),
-            array(
+                'size' => $tidy_limit,
+            ],
+            [
                 'charset' => $charset,
                 'noprefetch' => !empty($options['noprefetch']),
                 'return_dom' => true,
                 'strip_styles' => (!empty($options['inline']) || $strip_style_attributes),
-                'strip_style_attributes' => $strip_style_attributes
-            )
-        ));
+                'strip_style_attributes' => $strip_style_attributes,
+            ],
+        ]);
 
-        $this->_tmp = array(
+        $this->_tmp = [
             'base' => null,
             'inline' => !empty($options['inline']),
-            'phish' => ((!empty($options['inline']) || !empty($options['phishing'])) && $this->getConfigParam('phishing_check'))
-        );
+            'phish' => ((!empty($options['inline']) || !empty($options['phishing'])) && $this->getConfigParam('phishing_check')),
+        ];
         $this->_phishWarn = false;
 
         foreach ($data as $node) {
@@ -190,35 +190,35 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
         }
 
         switch (Horde_String::lower($node->tagName)) {
-        case 'a':
-            /* Strip whitespace from href links. This is bad HTML, but may
-             * prevent viewing of the link. PHP DOM will already strip this
-             * out for us, but if using tidy it will have URL encoded the
-             * spaces. */
-            if ($node->hasAttribute('href')) {
-                $node->setAttribute('href', preg_replace('/^(\%20)+/', '', trim($node->getAttribute('href'))));
-            }
-            break;
-
-        case 'base':
-            /* Deal with <base> tags in the HTML, since they will screw up our
-             * own relative paths. */
-            if ($this->_tmp['inline'] && $node->hasAttribute('href')) {
-                $base = $node->getAttribute('href');
-                if (substr($base, -1) != '/') {
-                    $base .= '/';
+            case 'a':
+                /* Strip whitespace from href links. This is bad HTML, but may
+                 * prevent viewing of the link. PHP DOM will already strip this
+                 * out for us, but if using tidy it will have URL encoded the
+                 * spaces. */
+                if ($node->hasAttribute('href')) {
+                    $node->setAttribute('href', preg_replace('/^(\%20)+/', '', trim($node->getAttribute('href'))));
                 }
+                break;
 
-                $this->_tmp['base'] = $base;
-                $node->removeAttribute('href');
-            }
-            break;
+            case 'base':
+                /* Deal with <base> tags in the HTML, since they will screw up our
+                 * own relative paths. */
+                if ($this->_tmp['inline'] && $node->hasAttribute('href')) {
+                    $base = $node->getAttribute('href');
+                    if (substr($base, -1) != '/') {
+                        $base .= '/';
+                    }
+
+                    $this->_tmp['base'] = $base;
+                    $node->removeAttribute('href');
+                }
+                break;
         }
 
         foreach ($node->attributes as $val) {
             /* Attempt to fix paths that were relying on a <base> tag. */
             if (!is_null($this->_tmp['base']) &&
-                in_array($val->name, array('href', 'src'))) {
+                in_array($val->name, ['href', 'src'])) {
                 $node->setAttribute($val->name, $this->_tmp['base'] . ltrim($val->value, '/'));
             }
 
@@ -227,7 +227,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
                     $this->_phishingCheck($val->value, $node->textContent)) {
                     $this->_phishWarn = true;
 
-                    foreach (array_merge(array($node), iterator_to_array($node->childNodes)) as $node2) {
+                    foreach (array_merge([$node], iterator_to_array($node->childNodes)) as $node2) {
                         if ($node2 instanceof DOMElement) {
                             $node2->removeAttribute('color');
                             $node2->removeAttribute('style');
@@ -270,7 +270,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
 
         /* Only concern ourselves with HTTP and FTP links. */
         if (!isset($href_url['scheme']) ||
-            !in_array($href_url['scheme'], array('ftp', 'http', 'https'))) {
+            !in_array($href_url['scheme'], ['ftp', 'http', 'https'])) {
             return false;
         }
 
@@ -321,17 +321,17 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
             (isset($text_url['scheme']) || isset($text_url['port']))) {
             if (!isset($text_url['port'])) {
                 switch ($text_url['scheme']) {
-                case 'ftp':
-                    $text_url['port'] = 25;
-                    break;
+                    case 'ftp':
+                        $text_url['port'] = 25;
+                        break;
 
-                case 'http':
-                    $text_url['port'] = 80;
-                    break;
+                    case 'http':
+                        $text_url['port'] = 80;
+                        break;
 
-                case 'https':
-                    $text_url['port'] = 443;
-                    break;
+                    case 'https':
+                        $text_url['port'] = 443;
+                        break;
                 }
             }
 

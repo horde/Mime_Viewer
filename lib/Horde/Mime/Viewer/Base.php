@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Base:: class provides the API for specific viewer
  * drivers to extend.
@@ -20,7 +21,7 @@ class Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_conf = array();
+    protected $_conf = [];
 
     /**
      * The Horde_Mime_Part object to render.
@@ -34,33 +35,33 @@ class Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_required = array();
+    protected $_required = [];
 
     /**
      * This driver's display capabilities.
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         // Is the part *data* compressed (not the rendered data)?
         'compressed' => false,
         // Does this part contain emebedded MIME data?
         'embedded' => false,
         // Force inline display of this part?
-        'forceinline' => false
-    );
+        'forceinline' => false,
+    ];
 
     /**
      * Constructor.
@@ -79,7 +80,7 @@ class Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         foreach ($this->_required as $val) {
             if (!isset($conf[$val])) {
@@ -143,34 +144,34 @@ class Horde_Mime_Viewer_Base
     public function render($mode)
     {
         switch ($mode) {
-        case 'full':
-            try {
-                return $this->_render();
-            } catch (Horde_Exception $e) {
-                $error = $e;
-            }
-            break;
+            case 'full':
+                try {
+                    return $this->_render();
+                } catch (Horde_Exception $e) {
+                    $error = $e;
+                }
+                break;
 
-        case 'inline':
-            try {
-                return $this->_renderInline();
-            } catch (Horde_Exception $e) {
-                $error = $e;
-            }
+            case 'inline':
+                try {
+                    return $this->_renderInline();
+                } catch (Horde_Exception $e) {
+                    $error = $e;
+                }
 
-        case 'info':
-            try {
-                return $this->_renderInfo();
-            } catch (Horde_Exception $e) {
-                $error = $e;
-            }
+            case 'info':
+                try {
+                    return $this->_renderInfo();
+                } catch (Horde_Exception $e) {
+                    $error = $e;
+                }
 
-        case 'raw':
-            try {
-                return $this->_renderRaw();
-            } catch (Horde_Exception $e) {
-                $error = $e;
-            }
+            case 'raw':
+                try {
+                    return $this->_renderRaw();
+                } catch (Horde_Exception $e) {
+                    $error = $e;
+                }
         }
 
         // TODO: Error handling
@@ -188,7 +189,7 @@ class Horde_Mime_Viewer_Base
         $viewer = $this->_getViewer();
         return $viewer
             ? $viewer->render('full')
-            : array();
+            : [];
     }
 
     /**
@@ -205,7 +206,7 @@ class Horde_Mime_Viewer_Base
         $viewer = $this->_getViewer();
         return $viewer
             ? $viewer->render('inline')
-            : array();
+            : [];
     }
 
     /**
@@ -219,7 +220,7 @@ class Horde_Mime_Viewer_Base
         $viewer = $this->_getViewer();
         return $viewer
             ? $viewer->render('info')
-            : array();
+            : [];
     }
 
     /**
@@ -233,7 +234,7 @@ class Horde_Mime_Viewer_Base
         $viewer = $this->_getViewer();
         return $viewer
             ? $viewer->render('raw')
-            : array();
+            : [];
     }
 
     /**
@@ -253,19 +254,19 @@ class Horde_Mime_Viewer_Base
         }
 
         switch ($mode) {
-        case 'full':
-        case 'info':
-        case 'raw':
-            return $this->_capability[$mode];
+            case 'full':
+            case 'info':
+            case 'raw':
+                return $this->_capability[$mode];
 
-        case 'inline':
-            return $this->getConfigParam('inline') &&
-                ($this->_metadata['forceinline'] ||
-                 ($this->_capability['inline'] &&
-                  ($this->_mimepart->getDisposition() != 'attachment')));
+            case 'inline':
+                return $this->getConfigParam('inline') &&
+                    ($this->_metadata['forceinline'] ||
+                     ($this->_capability['inline'] &&
+                      ($this->_mimepart->getDisposition() != 'attachment')));
 
-        default:
-            return false;
+            default:
+                return false;
         }
     }
 
@@ -320,9 +321,8 @@ class Horde_Mime_Viewer_Base
      */
     public function getConfigParam($param)
     {
-        return isset($this->_conf[$param])
-            ? $this->_conf[$param]
-            : null;
+        return $this->_conf[$param]
+            ?? null;
     }
 
     /**
@@ -356,9 +356,8 @@ class Horde_Mime_Viewer_Base
      */
     public function getMetadata($data)
     {
-        return isset($this->_metadata[$data])
-            ? $this->_metadata[$data]
-            : null;
+        return $this->_metadata[$data]
+            ?? null;
     }
 
     /**
@@ -382,13 +381,13 @@ class Horde_Mime_Viewer_Base
      */
     protected function _renderReturn($data = null, $type = null)
     {
-        return array(
-            $this->_mimepart->getMimeId() => array(
+        return [
+            $this->_mimepart->getMimeId() => [
                 'data' => (is_null($data) ? $this->_mimepart->getContents() : $data),
-                'status' => array(),
-                'type' => (is_null($type) ? $this->_mimepart->getType() : $type)
-            )
-        );
+                'status' => [],
+                'type' => (is_null($type) ? $this->_mimepart->getType() : $type),
+            ],
+        ];
     }
 
     /**
@@ -432,7 +431,7 @@ class Horde_Mime_Viewer_Base
      *
      * @return string  The filtered text.
      */
-    protected function _textFilter($text, $driver, array $params = array())
+    protected function _textFilter($text, $driver, array $params = [])
     {
         return ($text_filter = $this->getConfigParam('text_filter'))
             ? call_user_func($text_filter, $text, $driver, $params)

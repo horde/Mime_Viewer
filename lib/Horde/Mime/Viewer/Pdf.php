@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Pdf class simply outputs the PDF file with the
  * content-type 'application/pdf' enabling web browsers with a PDF viewer
@@ -21,12 +22,12 @@ class Horde_Mime_Viewer_Pdf extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.

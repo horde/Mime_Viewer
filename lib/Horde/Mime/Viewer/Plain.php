@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Plain class renders out plain text with URLs made
  * into hyperlinks (if viewing inline).
@@ -21,12 +22,12 @@ class Horde_Mime_Viewer_Plain extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => true,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.
@@ -43,10 +44,10 @@ class Horde_Mime_Viewer_Plain extends Horde_Mime_Viewer_Base
             $text = $this->_formatFlowed($text, $this->_mimepart->getContentTypeParameter('delsp'));
         }
 
-        $text = '<html><body><tt>' . $this->_textFilter($text, 'Text2html', array(
+        $text = '<html><body><tt>' . $this->_textFilter($text, 'Text2html', [
             'charset' => $charset,
-            'parselevel' => Horde_Text_Filter_Text2html::MICRO_LINKURL
-        )) . '</tt></body></html>';
+            'parselevel' => Horde_Text_Filter_Text2html::MICRO_LINKURL,
+        ]) . '</tt></body></html>';
 
         return $this->_renderReturn(
             $text,

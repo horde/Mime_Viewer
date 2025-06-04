@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Msexcel class renders out Microsoft Excel
  * documents in HTML format by using the Gnumeric package.
@@ -21,12 +22,12 @@ class Horde_Mime_Viewer_Msexcel extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Constructor.
@@ -40,11 +41,11 @@ class Horde_Mime_Viewer_Msexcel extends Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
-        $this->_required = array_merge($this->_required, array(
-            'location'
-        ));
+        $this->_required = array_merge($this->_required, [
+            'location',
+        ]);
 
         parent::__construct($part, $conf);
     }
@@ -59,15 +60,15 @@ class Horde_Mime_Viewer_Msexcel extends Horde_Mime_Viewer_Base
         /* Check to make sure the viewer program exists. */
         if (!($location = $this->getConfigParam('location')) ||
             !file_exists($location)) {
-            return array();
+            return [];
         }
 
         $process = proc_open(
             escapeshellcmd($location) . ' --import-type=Gnumeric_Excel:excel --export-type=Gnumeric_html:html40 fd://0 fd://1',
-            array(
-                0 => array('pipe', 'r'),
-                1 => array('pipe', 'w')
-            ),
+            [
+                0 => ['pipe', 'r'],
+                1 => ['pipe', 'w'],
+            ],
             $pipes
         );
 

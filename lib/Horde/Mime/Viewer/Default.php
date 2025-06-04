@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Default class simply prints out the encapsulated
  * content.  It exists as a fallback if no other intelligent rendering
@@ -14,6 +15,4 @@
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package  Mime_Viewer
  */
-class Horde_Mime_Viewer_Default extends Horde_Mime_Viewer_Base
-{
-}
+class Horde_Mime_Viewer_Default extends Horde_Mime_Viewer_Base {}

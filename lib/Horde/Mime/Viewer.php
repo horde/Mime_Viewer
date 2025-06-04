@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer:: class provides an abstracted interface to render
  * MIME data into various formats.  It depends on both a set of
@@ -35,7 +36,7 @@ class Horde_Mime_Viewer
      * @return Horde_Mime_Viewer_Base  The newly created concrete instance.
      * @throws Horde_Mime_Viewer_Exception
      */
-    public static function factory($driver, $part, array $params = array())
+    public static function factory($driver, $part, array $params = [])
     {
         $params['_driver'] = $driver;
 

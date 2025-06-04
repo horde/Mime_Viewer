@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Rar class renders out the contents of .rar archives
  * in HTML format.
@@ -21,37 +22,37 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => false,
         'info' => true,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Metadata for the current viewer/data.
      *
      * @var array
      */
-    protected $_metadata = array(
+    protected $_metadata = [
         'compressed' => true,
         'embedded' => false,
-        'forceinline' => false
-    );
+        'forceinline' => false,
+    ];
 
-   /**
-     * Constructor.
-     *
-     * @param Horde_Mime_Part $mime_part  The object with the data to be
-     *                                    rendered.
-     * @param array $conf                 Configuration:
-     * <pre>
-     * 'monospace' - (string) A class to use to display monospace text inline.
-     *               DEFAULT: Uses style="font-family:monospace"
-     * 'rar' - (Horde_Compress_Rar) A zip object.
-     * </pre>
-     */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    /**
+      * Constructor.
+      *
+      * @param Horde_Mime_Part $mime_part  The object with the data to be
+      *                                    rendered.
+      * @param array $conf                 Configuration:
+      * <pre>
+      * 'monospace' - (string) A class to use to display monospace text inline.
+      *               DEFAULT: Uses style="font-family:monospace"
+      * 'rar' - (Horde_Compress_Rar) A zip object.
+      * </pre>
+      */
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
         parent::__construct($part, $conf);
     }
@@ -82,21 +83,21 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
 
         $text = '<table><tr><td align="left"><span ' .
             ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">') .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'space2html', array(
+            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'space2html', [
                 'charset' => $charset,
                 'encode' => true,
-                'encode_all' => true
-            )) . "\n" .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'space2html', array(
+                'encode_all' => true,
+            ]) . "\n" .
+            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'space2html', [
                 'charset' => $charset,
                 'encode' => true,
-                'encode_all' => true
-            )) . "\n" .
-            $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'space2html', array(
+                'encode_all' => true,
+            ]) . "\n" .
+            $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'space2html', [
                 'charset' => $charset,
                 'encode' => true,
-                'encode_all' => true
-            )) .
+                'encode_all' => true,
+            ]) .
             "\n\n" .
             $this->_textFilter(
                 Horde_String::pad(Horde_Mime_Viewer_Translation::t("File Name"), 50, ' ', STR_PAD_RIGHT) .
@@ -106,11 +107,11 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
                 Horde_String::pad(Horde_Mime_Viewer_Translation::t("Method"), 10, ' ', STR_PAD_LEFT) .
                 Horde_String::pad(Horde_Mime_Viewer_Translation::t("Ratio"), 10, ' ', STR_PAD_LEFT),
                 'space2html',
-                array(
+                [
                     'charset' => $charset,
                     'encode' => true,
-                    'encode_all' => true
-                )
+                    'encode_all' => true,
+                ]
             ) . "\n" . str_repeat('-', 109) . "\n";
 
         foreach ($rarData as $val) {
@@ -126,10 +127,10 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
                 Horde_String::pad($val['method'], 10, ' ', STR_PAD_LEFT) .
                 Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT),
                 'space2html',
-                array(
+                [
                     'encode' => true,
-                    'encode_all' => true
-                )
+                    'encode_all' => true,
+                ]
             ) . "\n";
         }
 

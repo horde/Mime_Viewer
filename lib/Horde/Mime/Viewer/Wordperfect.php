@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Wordperfect class renders out WordPerfect documents
  * in HTML format by using the libwpd package.
@@ -22,12 +23,12 @@ class Horde_Mime_Viewer_Wordperfect extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Constructor.
@@ -41,11 +42,11 @@ class Horde_Mime_Viewer_Wordperfect extends Horde_Mime_Viewer_Base
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(Horde_Mime_Part $part, array $conf = array())
+    public function __construct(Horde_Mime_Part $part, array $conf = [])
     {
-        $this->_required = array_merge($this->_required, array(
-            'location'
-        ));
+        $this->_required = array_merge($this->_required, [
+            'location',
+        ]);
 
         parent::__construct($part, $conf);
     }
@@ -60,7 +61,7 @@ class Horde_Mime_Viewer_Wordperfect extends Horde_Mime_Viewer_Base
         /* Check to make sure the viewer program exists. */
         if (!($location = $this->getConfigParam('location')) ||
             !file_exists($location)) {
-            return array();
+            return [];
         }
 
         $tmp_wpd = $this->_getTempFile();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Exception handler for the horde/Mime_Viewer package.
  *
@@ -12,6 +13,4 @@
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
  * @package  Mime_Viewer
  */
-class Horde_Mime_Viewer_Exception extends Horde_Exception_Wrapped
-{
-}
+class Horde_Mime_Viewer_Exception extends Horde_Exception_Wrapped {}

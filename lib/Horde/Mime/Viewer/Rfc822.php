@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Rfc822 class renders out messages from the
  * message/rfc822 content type.
@@ -20,12 +21,12 @@ class Horde_Mime_Viewer_Rfc822 extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => true,
         'inline' => false,
-        'raw' => false
-    );
+        'raw' => false,
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.
@@ -51,9 +52,9 @@ class Horde_Mime_Viewer_Rfc822 extends Horde_Mime_Viewer_Base
          * the headers by searching for the CRLFCRLF sequence, use
          * getCanonicalContents() to make sure we are getting the text with
          * CRLF's. */
-        $text = $this->_mimepart->getContents(array('canonical' => true));
+        $text = $this->_mimepart->getContents(['canonical' => true]);
         if (empty($text)) {
-            return array();
+            return [];
         }
 
         /* Search for the end of the header text (CRLFCRLF). */
@@ -62,16 +63,16 @@ class Horde_Mime_Viewer_Rfc822 extends Horde_Mime_Viewer_Base
         /* Get the list of headers now. */
         $headers = Horde_Mime_Headers::parseHeaders($text);
 
-        $header_array = array(
+        $header_array = [
             'date' => Horde_Mime_Viewer_Translation::t("Date"),
             'from' => Horde_Mime_Viewer_Translation::t("From"),
             'to' => Horde_Mime_Viewer_Translation::t("To"),
             'cc' => Horde_Mime_Viewer_Translation::t("Cc"),
             'bcc' => Horde_Mime_Viewer_Translation::t("Bcc"),
             'reply-to' => Horde_Mime_Viewer_Translation::t("Reply-To"),
-            'subject' => Horde_Mime_Viewer_Translation::t("Subject")
-        );
-        $header_output = array();
+            'subject' => Horde_Mime_Viewer_Translation::t("Subject"),
+        ];
+        $header_output = [];
 
         foreach ($header_array as $key => $val) {
             $hdr = $this->_getHeaderValue($headers, $key);

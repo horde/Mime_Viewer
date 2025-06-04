@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Horde_Mime_Viewer_Syntaxhighlighter class renders source code appropriate
  * for highlighting with http://alexgorbatchev.com/SyntaxHighlighter/.
@@ -21,12 +22,12 @@ class Horde_Mime_Viewer_Syntaxhighlighter extends Horde_Mime_Viewer_Base
      *
      * @var array
      */
-    protected $_capability = array(
+    protected $_capability = [
         'full' => true,
         'info' => false,
         'inline' => true,
         'raw' => false,
-    );
+    ];
 
     /**
      * Return the full rendered version of the Horde_Mime_Part object.
@@ -76,146 +77,146 @@ class Horde_Mime_Viewer_Syntaxhighlighter extends Horde_Mime_Viewer_Base
         $type = str_replace('x-unknown', 'x-extension', $type);
 
         switch ($type) {
-        case 'application/javascript':
-        case 'application/x-javascript':
-        case 'application/x-extension-javascript':
-        case 'application/x-extension-js':
-            return 'js';
+            case 'application/javascript':
+            case 'application/x-javascript':
+            case 'application/x-extension-javascript':
+            case 'application/x-extension-js':
+                return 'js';
 
-        case 'application/x-perl':
-        case 'application/x-extension-pl':
-            return 'perl';
+            case 'application/x-perl':
+            case 'application/x-extension-pl':
+                return 'perl';
 
-        case 'application/x-php':
-        case 'application/x-extension-php':
-        case 'application/x-extension-php3':
-        case 'application/x-extension-phps':
-        case 'application/x-extension-php3s':
-        case 'application/x-httpd-php':
-        case 'application/x-httpd-php3':
-        case 'application/x-httpd-phps':
-            return 'php';
+            case 'application/x-php':
+            case 'application/x-extension-php':
+            case 'application/x-extension-php3':
+            case 'application/x-extension-phps':
+            case 'application/x-extension-php3s':
+            case 'application/x-httpd-php':
+            case 'application/x-httpd-php3':
+            case 'application/x-httpd-phps':
+                return 'php';
 
-        case 'application/x-python':
-            return 'python';
+            case 'application/x-python':
+                return 'python';
 
-        case 'application/x-ruby':
-            return 'ruby';
+            case 'application/x-ruby':
+                return 'ruby';
 
-        case 'application/x-sh':
-        case 'application/x-shellscript':
-        case 'application/x-extension-bash':
-        case 'application/x-extension-sh':
-            return 'bash';
+            case 'application/x-sh':
+            case 'application/x-shellscript':
+            case 'application/x-extension-bash':
+            case 'application/x-extension-sh':
+                return 'bash';
 
-        case 'application/xml':
-        case 'text/xml':
-        case 'text/xslt':
-        case 'text/html':
-        case 'text/xhtml':
-        case 'application/xhtml':
-        case 'application/x-vnd.kolab.contact':
-        case 'application/x-vnd.kolab.contact.distlist':
-        case 'application/x-vnd.kolab.event':
-        case 'application/x-vnd.kolab.h-ledger':
-        case 'application/x-vnd.kolab.h-prefs':
-        case 'application/x-vnd.kolab.note':
-        case 'application/x-vnd.kolab.task':
-            return 'xml';
+            case 'application/xml':
+            case 'text/xml':
+            case 'text/xslt':
+            case 'text/html':
+            case 'text/xhtml':
+            case 'application/xhtml':
+            case 'application/x-vnd.kolab.contact':
+            case 'application/x-vnd.kolab.contact.distlist':
+            case 'application/x-vnd.kolab.event':
+            case 'application/x-vnd.kolab.h-ledger':
+            case 'application/x-vnd.kolab.h-prefs':
+            case 'application/x-vnd.kolab.note':
+            case 'application/x-vnd.kolab.task':
+                return 'xml';
 
-        case 'text/css':
-        case 'application/x-extension-css':
-            return 'css';
+            case 'text/css':
+            case 'application/x-extension-css':
+                return 'css';
 
-        case 'text/diff':
-        case 'text/x-diff':
-        case 'text/x-patch':
-            return 'diff';
+            case 'text/diff':
+            case 'text/x-diff':
+            case 'text/x-patch':
+                return 'diff';
 
-        case 'text/cpp':
-        case 'text/x-c++':
-        case 'text/x-c++src':
-        case 'text/x-c++hdr':
-        case 'text/x-c':
-        case 'text/x-chdr':
-        case 'text/x-csrc':
-            return 'cpp';
+            case 'text/cpp':
+            case 'text/x-c++':
+            case 'text/x-c++src':
+            case 'text/x-c++hdr':
+            case 'text/x-c':
+            case 'text/x-chdr':
+            case 'text/x-csrc':
+                return 'cpp';
 
-        case 'text/x-java':
-            return 'java';
+            case 'text/x-java':
+                return 'java';
 
-        case 'text/x-sql':
-            return 'sql';
+            case 'text/x-sql':
+                return 'sql';
 
-        case 'application/x-extension-cs':
-            return 'csharp';
+            case 'application/x-extension-cs':
+                return 'csharp';
 
-        case 'application/x-extension-vb':
-        case 'application/x-extension-vba':
-            return 'vb';
+            case 'application/x-extension-vb':
+            case 'application/x-extension-vba':
+                return 'vb';
 
-        default:
-            return 'plain';
+            default:
+                return 'plain';
         }
     }
 
     protected function _languageToBrush($language)
     {
         switch ($language) {
-        case 'bash':
-        case 'sh':
-        case 'shell':
-            return 'Bash';
+            case 'bash':
+            case 'sh':
+            case 'shell':
+                return 'Bash';
 
-        case 'csharp':
-            return 'Csharp';
+            case 'csharp':
+                return 'Csharp';
 
-        case 'c':
-        case 'cpp':
-            return 'Cpp';
+            case 'c':
+            case 'cpp':
+                return 'Cpp';
 
-        case 'css':
-            return 'Css';
+            case 'css':
+                return 'Css';
 
-        case 'diff':
-        case 'patch':
-        case 'pas':
-            return 'Diff';
+            case 'diff':
+            case 'patch':
+            case 'pas':
+                return 'Diff';
 
-        case 'java':
-            return 'Java';
+            case 'java':
+                return 'Java';
 
-        case 'js':
-        case 'jscript':
-        case 'javascript':
-            return 'JScript';
+            case 'js':
+            case 'jscript':
+            case 'javascript':
+                return 'JScript';
 
-        case 'perl':
-            return 'Perl';
+            case 'perl':
+                return 'Perl';
 
-        case 'php':
-            return 'Php';
+            case 'php':
+                return 'Php';
 
-        case 'python':
-            return 'Python';
+            case 'python':
+                return 'Python';
 
-        case 'ruby':
-            return 'Ruby';
+            case 'ruby':
+                return 'Ruby';
 
-        case 'sql':
-            return 'Sql';
+            case 'sql':
+                return 'Sql';
 
-        case 'vb':
-            return 'Vb';
+            case 'vb':
+                return 'Vb';
 
-        case 'xml':
-        case 'html':
-        case 'xhtml':
-        case 'xslt':
-            return 'Xml';
+            case 'xml':
+            case 'html':
+            case 'xhtml':
+            case 'xslt':
+                return 'Xml';
 
-        default:
-            return 'Plain';
+            default:
+                return 'Plain';
         }
     }
 }

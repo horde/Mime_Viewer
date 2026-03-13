@@ -30,7 +30,7 @@
         "horde/test": "^3 || dev-FRAMEWORK_6_0"
     },
     "suggest": {
-        "pear/net_dns2": "*",
+        "mikepultz/netdns2": "^2.0",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xsl": "*"

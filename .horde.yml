@@ -38,7 +38,7 @@ dependencies:
       xml: '*'
   optional:
     composer:
-      pear/net_dns2: '*'
+      mikepultz/netdns2: ^2.0
     ext:
       dom: '*'
       libxml: '*'

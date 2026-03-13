@@ -66,7 +66,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *                                    rendered.
      * @param array $conf                 Configuration:
      *   - browser: (Horde_Browser) A browser object.
-     *   - dns: (Net_DNS2_Resolver) A DNS resolver object; used in phishing
+     *   - dns: (NetDNS2\Resolver) A DNS resolver object; used in phishing
      *          analysis (@since 2.1.0).
      *   - external_callback: (callback) A callback function that a href URL
      *                        is passed through. The function must take the
@@ -302,7 +302,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
             if ($dns = $this->getConfigParam('dns')) {
                 try {
                     $dns->query($text_url['path'], 'A');
-                } catch (Net_DNS2_Exception $e) {
+                } catch (NetDNS2\Exception $e) {
                     /* Not found. */
                     return false;
                 }

@@ -1,4 +1,16 @@
 ---
+3.0.0-alpha7:
+  api: 3.0.0-alpha7
+  state:
+    release: alpha
+    api: alpha
+  date: 2026-03-15
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    Merge pull request #1 from horde/feat/migrate-netdns2
+    feat: Migrate off pear/net_dns2
 3.0.0-alpha6:
   api: 3.0.0-alpha1
   state:

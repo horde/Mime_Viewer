@@ -14,7 +14,7 @@ authors:
     active: false
     role: lead
 version:
-  release: 3.0.0-alpha6
+  release: 3.0.0-alpha7
   api: 3.0.0alpha1
 state:
   release: alpha
@@ -46,3 +46,4 @@ dependencies:
   dev:
     composer:
       horde/test: ^3
+vendor: horde

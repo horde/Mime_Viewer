@@ -133,7 +133,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *               inline.
      *               DEFAULT: false.
      *
-     * @return Horde_Domhtml  The cleaned HTML data.
+     * @return Horde_Domhtml|\Horde\Util\Domhtml  The cleaned HTML data.
      */
     protected function _cleanHTML($data, $options = [])
     {

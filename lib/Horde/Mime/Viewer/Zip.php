@@ -124,7 +124,7 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
             $val['name'] = Horde_String::pad(Horde_String::truncate($val['name'], 15), 15, ' ', STR_PAD_RIGHT);
             $val['attr'] = Horde_String::pad($val['attr'], 10, ' ', STR_PAD_LEFT);
             $val['size'] = Horde_String::pad($val['size'], 10, ' ', STR_PAD_LEFT);
-            $val['date'] = Horde_String::pad(strftime("%d-%b-%Y %H:%M", $val['date']), 19, ' ', STR_PAD_LEFT);
+            $val['date'] = Horde_String::pad(\Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT);
             $val['method'] = Horde_String::pad($val['method'], 10, ' ', STR_PAD_LEFT);
             $val['ratio'] = Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT);
 

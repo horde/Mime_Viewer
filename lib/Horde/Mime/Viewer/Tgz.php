@@ -153,7 +153,7 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
                 str_pad($val['name'], 62, ' ', STR_PAD_RIGHT) .
                 str_pad($val['attr'], 15, ' ', STR_PAD_LEFT) .
                 str_pad($val['size'], 10, ' ', STR_PAD_LEFT) .
-                str_pad(strftime("%d-%b-%Y %H:%M", $val['date']), 19, ' ', STR_PAD_LEFT),
+                str_pad(\Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT),
                 'Space2html',
                 [
                     'charset' => $charset,

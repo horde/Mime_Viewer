@@ -123,7 +123,7 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
                 Horde_String::pad($val['name'], 50, ' ', STR_PAD_RIGHT) .
                 Horde_String::pad($val['attr'], 10, ' ', STR_PAD_LEFT) .
                 Horde_String::pad($val['size'], 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(strftime("%d-%b-%Y %H:%M", $val['date']), 19, ' ', STR_PAD_LEFT) .
+                Horde_String::pad(\Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT) .
                 Horde_String::pad($val['method'], 10, ' ', STR_PAD_LEFT) .
                 Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT),
                 'space2html',

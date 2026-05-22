@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (GPL). If you
  * did not receive this file, see http://www.horde.org/licenses/gpl.
@@ -133,7 +133,7 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
      *               inline.
      *               DEFAULT: false.
      *
-     * @return Horde_Domhtml|\Horde\Util\Domhtml  The cleaned HTML data.
+     * @return Horde_Domhtml|Horde\Util\Domhtml  The cleaned HTML data.
      */
     protected function _cleanHTML($data, $options = [])
     {
@@ -143,11 +143,11 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
         }
         $charset = $options['charset']
             ?? $this->_mimepart->getCharset();
-        $strip_style_attributes =
-            (!empty($options['inline']) &&
-             (($browser->isBrowser('mozilla') &&
-              ($browser->getMajor() == 4)) ||
-              $browser->isBrowser('msie')));
+        $strip_style_attributes
+            = (!empty($options['inline'])
+             && (($browser->isBrowser('mozilla')
+              && ($browser->getMajor() == 4))
+              || $browser->isBrowser('msie')));
 
         $data = $this->_textFilter($data, ['cleanhtml', 'xss'], [
             [
@@ -217,14 +217,14 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
 
         foreach ($node->attributes as $val) {
             /* Attempt to fix paths that were relying on a <base> tag. */
-            if (!is_null($this->_tmp['base']) &&
-                in_array($val->name, ['href', 'src'])) {
+            if (!is_null($this->_tmp['base'])
+                && in_array($val->name, ['href', 'src'])) {
                 $node->setAttribute($val->name, $this->_tmp['base'] . ltrim($val->value, '/'));
             }
 
             if ($val->name == 'href') {
-                if ($this->_tmp['phish'] &&
-                    $this->_phishingCheck($val->value, $node->textContent)) {
+                if ($this->_tmp['phish']
+                    && $this->_phishingCheck($val->value, $node->textContent)) {
                     $this->_phishWarn = true;
 
                     foreach (array_merge([$node], iterator_to_array($node->childNodes)) as $node2) {
@@ -269,8 +269,8 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
         }
 
         /* Only concern ourselves with HTTP and FTP links. */
-        if (!isset($href_url['scheme']) ||
-            !in_array($href_url['scheme'], ['ftp', 'http', 'https'])) {
+        if (!isset($href_url['scheme'])
+            || !in_array($href_url['scheme'], ['ftp', 'http', 'https'])) {
             return false;
         }
 
@@ -283,8 +283,8 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
             /* If the path matches the end of the URL path, consider safe
              * (most likely the link text is something like a shortened
              * filename). */
-            if (isset($href_url['path']) &&
-                preg_match("/" . preg_quote($text_url['path'], '/') . "$/", $href_url['path'])) {
+            if (isset($href_url['path'])
+                && preg_match("/" . preg_quote($text_url['path'], '/') . "$/", $href_url['path'])) {
                 return false;
             }
 
@@ -317,8 +317,8 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
          * phishing.
          * 2. If port doesn't exist on text link, and port does not match
          * defaults, this is phishing. */
-        if (isset($href_url['port']) &&
-            (isset($text_url['scheme']) || isset($text_url['port']))) {
+        if (isset($href_url['port'])
+            && (isset($text_url['scheme']) || isset($text_url['port']))) {
             if (!isset($text_url['port'])) {
                 switch ($text_url['scheme']) {
                     case 'ftp':

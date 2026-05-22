@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Msword class renders out Microsoft Word documents
  * in HTML format by using the AbiWord package.
  *
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -65,8 +65,8 @@ class Horde_Mime_Viewer_Msword extends Horde_Mime_Viewer_Base
     protected function _convert($type, $mime)
     {
         /* Check to make sure the viewer program exists. */
-        if (!($location = $this->getConfigParam('location')) ||
-            !file_exists($location)) {
+        if (!($location = $this->getConfigParam('location'))
+            || !file_exists($location)) {
             return [];
         }
 

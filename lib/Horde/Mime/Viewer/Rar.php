@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Rar class renders out the contents of .rar archives
  * in HTML format.
  *
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -69,7 +69,7 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
         $contents = $this->_mimepart->getContents();
 
         if (!$this->getConfigParam('rar')) {
-            $this->setConfigParam('rar', Horde_Compress::factory('rar'));
+            $this->setConfigParam('rar', (new Horde\Compress\CompressFactory())->create('rar'));
         }
         $rarData = $this->getConfigParam('rar')->decompress($contents);
         $fileCount = count($rarData);
@@ -81,31 +81,31 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
 
         $monospace = $this->getConfigParam('monospace');
 
-        $text = '<table><tr><td align="left"><span ' .
-            ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">') .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'space2html', [
+        $text = '<table><tr><td align="left"><span '
+            . ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">')
+            . $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'space2html', [
                 'charset' => $charset,
                 'encode' => true,
                 'encode_all' => true,
-            ]) . "\n" .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'space2html', [
+            ]) . "\n"
+            . $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'space2html', [
                 'charset' => $charset,
                 'encode' => true,
                 'encode_all' => true,
-            ]) . "\n" .
-            $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'space2html', [
+            ]) . "\n"
+            . $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'space2html', [
                 'charset' => $charset,
                 'encode' => true,
                 'encode_all' => true,
-            ]) .
-            "\n\n" .
-            $this->_textFilter(
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("File Name"), 50, ' ', STR_PAD_RIGHT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Attributes"), 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Method"), 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Ratio"), 10, ' ', STR_PAD_LEFT),
+            ])
+            . "\n\n"
+            . $this->_textFilter(
+                Horde_String::pad(Horde_Mime_Viewer_Translation::t("File Name"), 50, ' ', STR_PAD_RIGHT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Attributes"), 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Method"), 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Ratio"), 10, ' ', STR_PAD_LEFT),
                 'space2html',
                 [
                     'charset' => $charset,
@@ -120,12 +120,12 @@ class Horde_Mime_Viewer_Rar extends Horde_Mime_Viewer_Base
                 : 100 * ($val['csize'] / $val['size']);
 
             $text .= $this->_textFilter(
-                Horde_String::pad($val['name'], 50, ' ', STR_PAD_RIGHT) .
-                Horde_String::pad($val['attr'], 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad($val['size'], 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(\Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT) .
-                Horde_String::pad($val['method'], 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT),
+                Horde_String::pad($val['name'], 50, ' ', STR_PAD_RIGHT)
+                . Horde_String::pad($val['attr'], 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad($val['size'], 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT)
+                . Horde_String::pad($val['method'], 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT),
                 'space2html',
                 [
                     'encode' => true,

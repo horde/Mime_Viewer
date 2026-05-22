@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Zip class renders out the contents of ZIP files in
  * HTML format.
  *
- * Copyright 2000-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2000-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -78,10 +78,10 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
         $contents = $this->_mimepart->getContents();
 
         if (!$this->getConfigParam('zip')) {
-            $this->setConfigParam('zip', Horde_Compress::factory('Zip'));
+            $this->setConfigParam('zip', (new Horde\Compress\CompressFactory())->create('zip'));
         }
         $zipInfo = $this->getConfigParam('zip')->decompress($contents, [
-            'action' => Horde_Compress_Zip::ZIP_LIST,
+            'action' => Horde\Compress\Driver\Zip::ZIP_LIST,
         ]);
 
         $fileCount = count($zipInfo);
@@ -93,21 +93,21 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
 
         $monospace = $this->getConfigParam('monospace');
 
-        $text = '<table><tr><td align="left"><span ' .
-            ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">') .
-            $this->_textFilter(
-                Horde_Mime_Viewer_Translation::t("Archive Name") . ': ' . $name . "\n" .
-                Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) .
-                " bytes\n" .
-                sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount) .
-                "\n\n" .
-                str_repeat(' ', 15) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Attributes"), 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Method"), 10, ' ', STR_PAD_LEFT) .
-                Horde_String::pad(Horde_Mime_Viewer_Translation::t("Ratio"), 10, ' ', STR_PAD_LEFT) .
-                "\n",
+        $text = '<table><tr><td align="left"><span '
+            . ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">')
+            . $this->_textFilter(
+                Horde_Mime_Viewer_Translation::t("Archive Name") . ': ' . $name . "\n"
+                . Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents)
+                . " bytes\n"
+                . sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount)
+                . "\n\n"
+                . str_repeat(' ', 15)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Attributes"), 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Method"), 10, ' ', STR_PAD_LEFT)
+                . Horde_String::pad(Horde_Mime_Viewer_Translation::t("Ratio"), 10, ' ', STR_PAD_LEFT)
+                . "\n",
                 'Space2html',
                 [
                     'charset' => $charset,
@@ -124,7 +124,7 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
             $val['name'] = Horde_String::pad(Horde_String::truncate($val['name'], 15), 15, ' ', STR_PAD_RIGHT);
             $val['attr'] = Horde_String::pad($val['attr'], 10, ' ', STR_PAD_LEFT);
             $val['size'] = Horde_String::pad($val['size'], 10, ' ', STR_PAD_LEFT);
-            $val['date'] = Horde_String::pad(\Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT);
+            $val['date'] = Horde_String::pad(Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT);
             $val['method'] = Horde_String::pad($val['method'], 10, ' ', STR_PAD_LEFT);
             $val['ratio'] = Horde_String::pad(sprintf("%1.1f%%", $ratio), 10, ' ', STR_PAD_LEFT);
 
@@ -140,9 +140,9 @@ class Horde_Mime_Viewer_Zip extends Horde_Mime_Viewer_Base
                 $val = call_user_func($this->_callback, $key, $val);
             }
 
-            $text .= $val['name'] . $val['attr'] . $val['size'] .
-                $val['date'] . $val['method'] . $val['ratio'] .
-                "\n";
+            $text .= $val['name'] . $val['attr'] . $val['size']
+                . $val['date'] . $val['method'] . $val['ratio']
+                . "\n";
         }
 
         return $this->_renderReturn(

@@ -25,7 +25,7 @@
  *   <indentright>, <outdent>, <outdentright>, <samepage>, <iso-8859-X>,
  *   <us-ascii>,
  *
- * Copyright 2004-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2004-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.

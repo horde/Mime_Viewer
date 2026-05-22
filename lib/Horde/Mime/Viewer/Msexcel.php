@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Msexcel class renders out Microsoft Excel
  * documents in HTML format by using the Gnumeric package.
  *
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -58,8 +58,8 @@ class Horde_Mime_Viewer_Msexcel extends Horde_Mime_Viewer_Base
     protected function _render()
     {
         /* Check to make sure the viewer program exists. */
-        if (!($location = $this->getConfigParam('location')) ||
-            !file_exists($location)) {
+        if (!($location = $this->getConfigParam('location'))
+            || !file_exists($location)) {
             return [];
         }
 

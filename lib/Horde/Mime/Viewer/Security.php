@@ -5,7 +5,7 @@
  * appropriate Horde_Mime_Viewer for secure multipart messages (defined by RFC
  * 1847). This class handles multipart/signed and multipart/encrypted data.
  *
- * Copyright 2002-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2002-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -43,8 +43,8 @@ class Horde_Mime_Viewer_Security extends Horde_Mime_Viewer_Base
      */
     protected function _getViewer()
     {
-        if (($callback = $this->getConfigParam('viewer_callback')) &&
-            ($protocol = $this->_mimepart->getContentTypeParameter('protocol'))) {
+        if (($callback = $this->getConfigParam('viewer_callback'))
+            && ($protocol = $this->_mimepart->getContentTypeParameter('protocol'))) {
             return call_user_func($callback, $this, $this->_mimepart, $protocol);
         }
 

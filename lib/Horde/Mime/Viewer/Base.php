@@ -1,10 +1,12 @@
 <?php
 
+use Horde\Util\Util;
+
 /**
  * The Horde_Mime_Viewer_Base:: class provides the API for specific viewer
  * drivers to extend.
  *
- * Copyright 2008-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2008-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -260,10 +262,10 @@ class Horde_Mime_Viewer_Base
                 return $this->_capability[$mode];
 
             case 'inline':
-                return $this->getConfigParam('inline') &&
-                    ($this->_metadata['forceinline'] ||
-                     ($this->_capability['inline'] &&
-                      ($this->_mimepart->getDisposition() != 'attachment')));
+                return $this->getConfigParam('inline')
+                    && ($this->_metadata['forceinline']
+                     || ($this->_capability['inline']
+                      && ($this->_mimepart->getDisposition() != 'attachment')));
 
             default:
                 return false;
@@ -402,9 +404,9 @@ class Horde_Mime_Viewer_Base
     {
         if (!empty($data)) {
             reset($data);
-            $data[key($data)]['data'] = '<html><body>' .
-                $data[key($data)]['data'] .
-                '</body></html>';
+            $data[key($data)]['data'] = '<html><body>'
+                . $data[key($data)]['data']
+                . '</body></html>';
         }
 
         return $data;
@@ -419,7 +421,7 @@ class Horde_Mime_Viewer_Base
     {
         return ($temp_file = $this->getConfigParam('temp_file'))
             ? call_user_func($temp_file, __CLASS__)
-            : Horde_Util::getTempFile(__CLASS__);
+            : Util::getTempFile(__CLASS__);
     }
 
     /**

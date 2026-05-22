@@ -1,10 +1,12 @@
 <?php
 
+use Horde\Util\Util;
+
 /**
  * The Horde_Mime_Viewer_Ooo class renders out OpenOffice.org documents in
  * HTML format.
  *
- * Copyright 2003-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2003-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -64,9 +66,9 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
      */
     protected function _render()
     {
-        $has_xsl = Horde_Util::extensionExists('xsl');
+        $has_xsl = Util::extensionExists('xsl');
         if ($has_xsl) {
-            $tmpdir = Horde_Util::createTempDir(true, $this->getConfigParam('temp_dir')) . '/';
+            $tmpdir = Util::createTempDir(true, $this->getConfigParam('temp_dir')) . '/';
         }
 
         $fnames = ['content.xml', 'styles.xml', 'meta.xml'];
@@ -79,22 +81,23 @@ class Horde_Mime_Viewer_Ooo extends Horde_Mime_Viewer_Base
         ];
 
         if (!$this->getConfigParam('zip')) {
-            $this->setConfigParam('zip', Horde_Compress::factory('Zip'));
+            $this->setConfigParam('zip', (new Horde\Compress\CompressFactory())->create('zip'));
         }
         $list = $this->getConfigParam('zip')
             ->decompress(
                 $this->_mimepart->getContents(),
-                ['action' => Horde_Compress_Zip::ZIP_LIST]
+                ['action' => Horde\Compress\Driver\Zip::ZIP_LIST]
             );
 
         foreach ($list as $key => $file) {
             if (in_array($file['name'], $fnames)) {
-                $content = $this->getConfigParam('zip')
+                $result = $this->getConfigParam('zip')
                     ->decompress($this->_mimepart->getContents(), [
-                        'action' => Horde_Compress_Zip::ZIP_DATA,
+                        'action' => Horde\Compress\Driver\Zip::ZIP_DATA,
                         'info' => $list,
                         'key' => $key,
                     ]);
+                $content = is_array($result) ? $result['data'] : $result;
                 if ($has_xsl) {
                     file_put_contents($tmpdir . $file['name'], $content);
                 } elseif ($file['name'] == 'content.xml') {

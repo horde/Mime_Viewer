@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Tgz class renders out plain or gzipped tarballs in
  * HTML.
  *
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -72,25 +72,25 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
 
         /* Decompress gzipped files. */
         if (!($gzip = $this->getConfigParam('gzip'))) {
-            $gzip = Horde_Compress::factory('Gzip');
+            $gzip = (new Horde\Compress\CompressFactory())->create('gzip');
         }
 
         try {
             $contents = $gzip->decompress($contents);
             $this->_metadata['compressed'] = true;
-        } catch (Horde_Compress_Exception $e) {
+        } catch (Horde\Compress\Exception $e) {
             $this->_metadata['compressed'] = false;
         }
 
         /* Obtain the list of files/data in the tar file. */
         if (!($tar = $this->getConfigParam('tar'))) {
-            $tar = Horde_Compress::factory('Tar');
+            $tar = (new Horde\Compress\CompressFactory())->create('tar');
         }
 
         $tarData = null;
         try {
             $tarData = $tar->decompress($contents);
-        } catch (Horde_Compress_Exception $e) {
+        } catch (Horde\Compress\Exception $e) {
             if ($this->_metadata['compressed']) {
                 /* Doubly gzip'd files are somewhat common. Try a second
                  * decompression before giving up. */
@@ -98,7 +98,7 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
                     $tarData = $tar->decompress(
                         $gzip->decompress($contents)
                     );
-                } catch (Horde_Compress_Exception $e) {
+                } catch (Horde\Compress\Exception $e) {
                 }
             }
         }
@@ -116,44 +116,44 @@ class Horde_Mime_Viewer_Tgz extends Horde_Mime_Viewer_Base
 
         $monospace = $this->getConfigParam('monospace');
 
-        $text = '<table><tr><td align="left"><span ' .
-            ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">') .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'Space2html', [
+        $text = '<table><tr><td align="left"><span '
+            . ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">')
+            . $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive Name") . ':  ' . $name, 'Space2html', [
                 'charset' => $charset,
                 'encode' => true,
                 'encode_all' => true,
-            ]) . "\n" .
-            $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'Space2html', [
+            ]) . "\n"
+            . $this->_textFilter(Horde_Mime_Viewer_Translation::t("Archive File Size") . ': ' . strlen($contents) . ' bytes', 'Space2html', [
                 'charset' => $charset,
                 'encode' => true,
                 'encode_all' => true,
-            ]) . "\n" .
-            $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'Space2html', [
+            ]) . "\n"
+            . $this->_textFilter(sprintf(Horde_Mime_Viewer_Translation::ngettext("File Count: %d file", "File Count: %d files", $fileCount), $fileCount), 'Space2html', [
                 'charset' => $charset,
                 'encode' => true,
                 'encode_all' => true,
-            ]) .
-            "\n\n" .
-            $this->_textFilter(
-                str_pad(Horde_Mime_Viewer_Translation::t("File Name"), 62, ' ', STR_PAD_RIGHT) .
-                str_pad(Horde_Mime_Viewer_Translation::t("Attributes"), 15, ' ', STR_PAD_LEFT) .
-                str_pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT) .
-                str_pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT),
+            ])
+            . "\n\n"
+            . $this->_textFilter(
+                str_pad(Horde_Mime_Viewer_Translation::t("File Name"), 62, ' ', STR_PAD_RIGHT)
+                . str_pad(Horde_Mime_Viewer_Translation::t("Attributes"), 15, ' ', STR_PAD_LEFT)
+                . str_pad(Horde_Mime_Viewer_Translation::t("Size"), 10, ' ', STR_PAD_LEFT)
+                . str_pad(Horde_Mime_Viewer_Translation::t("Modified Date"), 19, ' ', STR_PAD_LEFT),
                 'Space2html',
                 [
                     'charset' => $charset,
                     'encode' => true,
                     'encode_all' => true,
                 ]
-            ) . "\n" .
-            str_repeat('-', 106) . "\n";
+            ) . "\n"
+            . str_repeat('-', 106) . "\n";
 
         foreach ($tarData as $val) {
             $text .= $this->_textFilter(
-                str_pad($val['name'], 62, ' ', STR_PAD_RIGHT) .
-                str_pad($val['attr'], 15, ' ', STR_PAD_LEFT) .
-                str_pad($val['size'], 10, ' ', STR_PAD_LEFT) .
-                str_pad(\Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT),
+                str_pad($val['name'], 62, ' ', STR_PAD_RIGHT)
+                . str_pad($val['attr'], 15, ' ', STR_PAD_LEFT)
+                . str_pad($val['size'], 10, ' ', STR_PAD_LEFT)
+                . str_pad(Horde\Date\Format::formatDate($val['date'], "%d-%b-%Y %H:%M", $GLOBALS['language'] ?? 'en_US'), 19, ' ', STR_PAD_LEFT),
                 'Space2html',
                 [
                     'charset' => $charset,

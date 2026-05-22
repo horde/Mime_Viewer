@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Tnef class allows MS-TNEF attachments to be
  * displayed.
  *
- * Copyright 2002-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2002-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -69,11 +69,11 @@ class Horde_Mime_Viewer_Tnef extends Horde_Mime_Viewer_Base
         /* Get the data from the attachment. */
         try {
             if (!($tnef = $this->getConfigParam('tnef'))) {
-                $tnef = Horde_Compress::factory('Tnef');
+                $tnef = (new Horde\Compress\CompressFactory())->create('tnef');
                 $this->setConfigParam('tnef', $tnef);
             }
             $tnefData = $tnef->decompress($this->_mimepart->getContents());
-        } catch (Horde_Compress_Exception $e) {
+        } catch (Horde\Compress\Exception $e) {
             $tnefData = [];
         }
 

@@ -16,7 +16,7 @@
  * environment, that is we do CRLF conversion even if <nofill> is
  * specified in the text, but we're close at least.
  *
- * Copyright 2001-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2001-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -95,9 +95,9 @@ class Horde_Mime_Viewer_Enriched extends Horde_Mime_Viewer_Base
         // Remove any unrecognized tags in the text (via RFC minimal specs)
         // any tags we just don't want to implement can also be removed here
         // Note that this will remove any html links, but this is intended
-        $implementedTags = '<param><bold><italic><underline><fixed><excerpt>' .
-                           '<smaller><bigger><center><color><fontfamily>' .
-                           '<flushleft><flushright><flushboth><paraindent>';
+        $implementedTags = '<param><bold><italic><underline><fixed><excerpt>'
+                           . '<smaller><bigger><center><color><fontfamily>'
+                           . '<flushleft><flushright><flushboth><paraindent>';
         // $unImplementedTags = '<nofill><lang>';
         $text = strip_tags($text, $implementedTags);
 

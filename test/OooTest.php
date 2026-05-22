@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2022 Horde LLC (http://www.horde.org/)
+ * Copyright 2022-2026 Horde LLC (http://www.horde.org/)
  *
  * @category   Horde
  * @copyright  2022 Horde LLC

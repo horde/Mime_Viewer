@@ -4,7 +4,7 @@
  * The Horde_Mime_Viewer_Deb class renders out lists of files in Debian
  * packages by using the dpkg tool to query the package.
  *
- * Copyright 1999-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 1999-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you
  * did not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -70,8 +70,8 @@ class Horde_Mime_Viewer_Deb extends Horde_Mime_Viewer_Base
     protected function _renderInfo()
     {
         /* Check to make sure the viewer program exists. */
-        if (!($location = $this->getConfigParam('location')) ||
-            !file_exists($location)) {
+        if (!($location = $this->getConfigParam('location'))
+            || !file_exists($location)) {
             return [];
         }
 
@@ -89,9 +89,9 @@ class Horde_Mime_Viewer_Deb extends Horde_Mime_Viewer_Base
         $monospace = $this->getConfigParam('monospace');
 
         return $this->_renderReturn(
-            '<span ' .
-            ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">') .
-            htmlspecialchars($data) . '</span>',
+            '<span '
+            . ($monospace ? 'class="' . $monospace . '">' : 'style="font-family:monospace">')
+            . htmlspecialchars($data) . '</span>',
             'text/html; charset=UTF-8'
         );
     }

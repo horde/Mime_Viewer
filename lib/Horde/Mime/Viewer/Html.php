@@ -143,6 +143,13 @@ class Horde_Mime_Viewer_Html extends Horde_Mime_Viewer_Base
         }
         $charset = $options['charset']
             ?? $this->_mimepart->getCharset();
+        /* Sanitize charset: some buggy mailers set the charset parameter to
+         * an invalid value (e.g. the full MIME type "text/html"). To prevent
+         * fatal errors during character set conversion, fall back to UTF-8
+         * whenever the charset value does not look like a valid encoding name. */
+        if (!$charset || !preg_match('/^[a-zA-Z0-9_\-]+$/', $charset)) {
+            $charset = 'UTF-8';
+        }
         $strip_style_attributes
             = (!empty($options['inline'])
              && (($browser->isBrowser('mozilla')
